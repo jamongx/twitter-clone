@@ -1,0 +1,2 @@
+Push notifications are an integral part of any social media platform. We can use a message queue or a message broker such as Apache Kafka with the notification service to dispatch requests to Firebase Cloud Messaging (FCM) or Apple Push Notification Service (APNS) which will handle the delivery of the push notifications to user devices.
+For more details, refer to the WhatsApp system design where we discuss push notifications in detail.
