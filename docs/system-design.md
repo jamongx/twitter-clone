@@ -15,12 +15,11 @@
 - Retweet functionality.
 - Favorite tweets.
 
-
+---
 
 ### Back of the envelope estimation
 
 #### Estimation and Constraints
-
 
 #### Traffic
 - This will be a read-heavy system,
@@ -79,6 +78,8 @@
 - Bandwidth: ~60 MB/s
 
 
+---
+
 
 ### Technology Stack
 
@@ -101,14 +102,24 @@
 
 
 
+---
+
+
 ### High-level design
 
 - Describes the main components of the system and how they interact with each other.
 
 #### Architecture
 
-- I will be using microservices architecture since it will make it easier to horizontally scale and decouple services.
-- Each service will have ownership of its own data model.
+- I'm using a microservices architecture because it simplifies horizontal scaling and decouples services.
+
+
+#### Data model design
+
+- The data model being used includes several components such as database schemas and object models.
+- Storing everything in a single database is not advisable, as it could limit scalability and quickly become a bottleneck.
+- To address this, the data will be distributed across different services, each of which will have ownership over particular tables.
+- Depending on use case, I opt for a relational database like PostgreSQL or a distributed NoSQL database like Apache Cassandra.
 
 
 #### [User Service](user-service.md)
@@ -138,22 +149,13 @@
 #### [Analytics Service](analytic-service.md)
 
 
-
-### Data model design
-
-- The data model being used includes several components such as database schemas and object models.
-- I have several tables to store various types of data. (You can elaborate by listing or describing these tables.)
-- Storing everything in a single database is not advisable, as it could limit scalability and quickly become a bottleneck.
-- To address this, the data will be distributed across different services, each of which will have ownership over particular tables.
-- Depending on use case, I opt for a relational database like PostgreSQL or a distributed NoSQL database like Apache Cassandra.
-
+---
 
 
 ### External communication, API Documentation
 
 - Outlines available API endpoints and how to use them.
 - It should specify the input/output format, error codes, etc., for each endpoint.
-
 
 
 #### RESTful API (HTTP/HTTPS Calls)
@@ -166,6 +168,8 @@
     - Stateless communication allows for easy scaling out.
 - Use Case: When the User Service requests a specific user's timeline from the Timeline Service.
 
+
+---
 
 
 ### Inter-service communication
@@ -197,6 +201,8 @@
     - Eases integration since all system components can use the same event stream.
 - Use Case: When the User Service publishes an event for a user information change, the Notification Service subscribes to the event to send notifications to the user.
 
+
+---
 
 
 ### Detailed design
@@ -264,6 +270,8 @@ systems. We can also use distributed file storage such as [HDFS]() or [GlusterFS
 - We can use services like [Amazon CloudFront]() or [Cloudflare CON]() for this use case.
 
 
+---
+
 
 ### Identify and resolve bottlenecks
 
@@ -276,6 +284,9 @@ systems. We can also use distributed file storage such as [HDFS]() or [GlusterFS
     - How can we reduce media storage costs?
 
 
+---
+
+
 ### Resilient
 - Running multiple instances of each of our services.
 - Introducing [load balancers]() between clients, servers, databases, and cache servers.
@@ -284,6 +295,8 @@ systems. We can also use distributed file storage such as [HDFS]() or [GlusterFS
 - Exactly once delivery and message ordering is challenging in a distributed system, we can use a dedicated [Message broker]() such as [Apache Kafka]() or [NATS]() to make our notification system more robust.
 - We can add media processing and compression capabilities to the media service to compress large files which will save a lot of storage space and reduce cost.
 
+
+---
 
 
 ### References

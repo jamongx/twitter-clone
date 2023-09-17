@@ -12,7 +12,7 @@ Side project, Twitter clone that is based on a microservices architecture
 #### [User Stories](docs/user-stories.md)
 - Describes the features or functionalities of the system in the form of user stories or use case scenarios.
 
-#### [Development Environment Setup](development-setup)
+#### [Development Environment Setup](development-setup.md)
 - Provides instructions on setting up the development environment. This could include required software, environment variable settings, database configurations, etc.
 
 #### [Test Plan](test-plan.md)
