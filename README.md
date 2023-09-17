@@ -6,6 +6,11 @@
 - Details the architecture and design of the system.
 
 
+### [Contribution Guidelines](CONTRIBUTING.md)
+
+#### Java Coding Guidelines
+
+
 ### Development Plan
 - Each service includes database schemas, API endpoints, and class diagrams.
 
@@ -13,6 +18,16 @@
 - [Development Environment Setup](development-setup.md)
 
 #### Phase 2
+- config service
+
+#### Phase 3
+- logging service
+
+#### Phase 4
+- api gateway
+- service discovery
+
+#### Phase 5
 - [User Service](user-service.md)
 
 #### Phase 3 
