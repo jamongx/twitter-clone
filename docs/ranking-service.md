@@ -1,3 +1,5 @@
+#### Ranking Algorithm
+
 As we discussed, we will need a ranking algorithm to rank each tweet according to its relevance to each specific user.
 For example, Facebook used to utilize an EdgeRank algorithm. Here, the rank of each feed item is described by:
 
@@ -12,10 +14,3 @@ Where,
 - Nowadays, algorithms are much more complex and ranking is done using machine learning models which can take thousands of factors into consideration.
 
 
-#### Retweets
-Retweets are one of our extended requirements. To implement this feature, we can simply create a new tweet with the user id of the user retweeting the original tweet and then modify the type enum and content property of the new tweet to link it with the original tweet.
-For example, the type enum property can be of type tweet, similar to text, video, etc and content can be the id of the original tweet. Here the first row indicates the original tweet while the second row is how we can represent a retweet.
-
-![](https://i.imgur.com/k8HMPPr.png)
-
-This is a very basic implementation. To improve this we can create a separate table itself to store retweets.
