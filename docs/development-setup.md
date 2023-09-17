@@ -1,0 +1,2 @@
+- Provides instructions on setting up the development environment.
+- This could include required software, environment variable settings, database configurations, etc.

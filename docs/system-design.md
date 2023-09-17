@@ -121,32 +121,17 @@
 - To address this, the data will be distributed across different services, each of which will have ownership over particular tables.
 - Depending on use case, I opt for a relational database like PostgreSQL or a distributed NoSQL database like Apache Cassandra.
 
+#### Services
+- [User Service](user-service.md)
+- [Tweet Service](tweet-service.md)
+- [Timeline Service](timeline-service.md)
+- [Notification Service](notification-service.md)
+- [Search Service](search-service.md)
+- [Media Service](media-service.md)
+- [Message Service](message-service.md)
+- [Ranking Service](ranking-service.md)
+- [Analytics Service](analytic-service.md)
 
-#### [User Service](user-service.md)
-
-
-#### [Tweet Service](tweet-service.md)
-
-
-#### [Timeline Service](timeline-service.md)
-
-
-#### [Search Service](search-service.md)
-
-
-#### [Notification Service](notification-service.md)
-
-
-#### [Media Service](media-service.md)
-
-
-#### [Message Service](message-service.md)
-
-
-#### [Ranking Service](ranking-service.md)
-
-
-#### [Analytics Service](analytic-service.md)
 
 
 ---
