@@ -6,51 +6,49 @@
 - Details the architecture and design of the system.
 
 
-### [Contribution Guidelines](CONTRIBUTING.md)
+### [Contribution Guidelines](docs/CONTRIBUTING.md)
 
-#### Java Coding Guidelines
+
+### [Development Environment Setup](docs/development-setup.md)
 
 
 ### Development Plan
 - Each service includes database schemas, API endpoints, and class diagrams.
 
 #### Phase 1
-- [Development Environment Setup](development-setup.md)
-
-#### Phase 2
 - config service
 
-#### Phase 3
+#### Phase 2
 - logging service
 
-#### Phase 4
+#### Phase 3
 - api gateway
 - service discovery
 
-#### Phase 5
-- [User Service](user-service.md)
-
-#### Phase 3 
-- [Tweet Service](tweet-service.md)
-
 #### Phase 4
-- [Timeline Service](timeline-service.md)
+- [User Service](docs/user-service.md)
 
 #### Phase 5
-- [Notification Service](notification-service.md)
+- [Tweet Service](docs/tweet-service.md)
+
+#### Phase 6
+- [Timeline Service](docs/timeline-service.md)
+
+#### Phase 7
+- [Notification Service](docs/notification-service.md)
 
 #### Phase X
-- [Search Service](search-service.md)
-- [Media Service](media-service.md)
-- [Message Service](message-service.md)
-- [Ranking Service](ranking-service.md)
-- [Analytics Service](analytic-service.md)
+- [Search Service](docs/search-service.md)
+- [Media Service](docs/media-service.md)
+- [Message Service](docs/message-service.md)
+- [Ranking Service](docs/ranking-service.md)
+- [Analytics Service](docs/analytic-service.md)
 
 
 
-### [Test Plan](test-plan.md)
+### [Test Plan](docs/test-plan.md)
 - Specifies the testing strategy and individual test cases.
 
 
-### [Change Log](change-log.md)
+### [Change Log](docs/change-log.md)
 - Documents the version history and changes made in the project.
