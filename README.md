@@ -3,7 +3,7 @@
 
 
 ### [System Design](docs/system-design.md)
-- Details the architecture and design of the system.
+- High level design and architecture of the system.
 
 
 ### [Contribution Guidelines](docs/CONTRIBUTING.md)
@@ -16,14 +16,14 @@
 - Each service includes database schemas, API endpoints, and class diagrams.
 
 #### Phase 1
-- config service
+- [api gateway](docs/api-gateway.md)
+- service discovery
 
 #### Phase 2
-- logging service
+- config service
 
 #### Phase 3
-- api gateway
-- service discovery
+- logging service
 
 #### Phase 4
 - [User Service](docs/user-service.md)

@@ -29,6 +29,14 @@
 
 >200 million x 5 tweets = 1 billion/day (tweets)
 
+>>200 million x 5 tweets = 1 billion/day (tweets)
+
+>>>200 million x 5 tweets = 1 billion/day (tweets)
+
+```
+    200 million x 5 tweets = 1 billion/day (tweets)
+```
+
 - Tweets can also contain media such as images, or videos.
 	- We can assume that 10 percent of tweets are media files shared by the users, which gives us additional 100 million files we would need to store.
 
