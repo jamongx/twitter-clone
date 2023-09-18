@@ -2,6 +2,7 @@
 
 1. [Getting Started](#getting-started)
 2. [Code Style](#code-style)
+3. [Logging Style](#logging-style)
 3. [Submitting Changes](#submitting-changes)
 4. [Branching Strategy](#branching-strategy)
 5. [Commit Message Format](#commit-message-format)
@@ -21,6 +22,9 @@
 
 - [Java Code Style Guide](java-code-style-guide.md).
 
+
+### Logging Style
+- [Logging Style](logging-style.md)
 
 
 ### Submitting Changes

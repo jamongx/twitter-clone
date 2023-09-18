@@ -128,13 +128,6 @@
 - I'm using a microservices architecture because it simplifies horizontal scaling and decouples services.
 
 
-#### Data model design
-
-- The data model being used includes several components such as database schemas and object models.
-- Storing everything in a single database is not advisable, as it could limit scalability and quickly become a bottleneck.
-- To address this, the data will be distributed across different services, each of which will have ownership over particular tables.
-- Depending on use case, I opt for a relational database like PostgreSQL or a distributed NoSQL database like Apache Cassandra.
-
 #### Services
 - [User Service](user-service.md)
 - [Tweet Service](tweet-service.md)
@@ -147,17 +140,29 @@
 - [Analytics Service](analytic-service.md)
 
 
+---
+
+
+### [Data model design](data-model.md)
+
+- The data model being used includes several components such as database schemas and object models.
+- Storing everything in a single database is not advisable, as it could limit scalability and quickly become a bottleneck.
+- To address this, the data will be distributed across different services, each of which will have ownership over particular tables.
+- Depending on use case, I opt for a relational database like PostgreSQL or a distributed NoSQL database like Apache Cassandra.
+
 
 ---
 
 
-### External communication, API Documentation
+### [API Documentation](api-documentation.md)
 
+- External communication
 - Outlines available API endpoints and how to use them.
 - It should specify the input/output format, error codes, etc., for each endpoint.
 
 
 #### RESTful API (HTTP/HTTPS Calls)
+
 - Synchronous
 - Description:
     - The service sends API requests to another service using the HTTP/HTTPS protocol and waits for a response.
@@ -271,37 +276,3 @@ systems. We can also use distributed file storage such as [HDFS]() or [GlusterFS
 - [Content delivery network (CDN)]() increases content availability and redundancy while reducing bandwidth costs.
 - Generally, static files such as images, and videos are served from CON.
 - We can use services like [Amazon CloudFront]() or [Cloudflare CON]() for this use case.
-
-
----
-
-
-### Identify and resolve bottlenecks
-
-- Identify and resolve bottlenecks such as single points of failure in our design:
-    - What if one of our services crashes?
-    - How will we distribute our traffic between our components?
-    - How can we reduce the load on our database?
-    - How to improve the availability of our cache?
-    - How can we make our notification system more robust?
-    - How can we reduce media storage costs?
-
-
----
-
-
-### Resilient
-- Running multiple instances of each of our services.
-- Introducing [load balancers]() between clients, servers, databases, and cache servers.
-- Using multiple read replicas for databases.
-- Multiple instances and replicas for our distributed cache.
-- Exactly once delivery and message ordering is challenging in a distributed system, we can use a dedicated [Message broker]() such as [Apache Kafka]() or [NATS]() to make our notification system more robust.
-- We can add media processing and compression capabilities to the media service to compress large files which will save a lot of storage space and reduce cost.
-
-
----
-
-
-### References
-- System Design Interview - An Insider’s Guide
-- [Karan Pratap Singh - System Design (2022)](https://www.karanpratapsingh.com/courses/system-design/twitter)
