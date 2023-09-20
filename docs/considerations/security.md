@@ -1,0 +1,3 @@
+- Authentication and Authorization: Consider how you'll secure your services. JWT (JSON Web Tokens) or OAuth are popular choices.
+- Data Encryption: Ensure that sensitive data is encrypted at rest and in transit.
+- Network Isolation: Use firewalls, VPCs, or other means to isolate services and limit their exposure to the internet.

@@ -118,3 +118,23 @@ Which events would you like to trigger this webhook? -> Let me select individual
 
 -> Build Now
 
+
+###  sonarqube
+
+ubuntu@ip-172-31-30-234:~$ sudo hostnamectl set-hostname jenkins
+ubuntu@ip-172-31-30-234:~$ /bin/bash
+ubuntu@jenkins:~$
+
+
+ubuntu@ip-172-31-19-11:~$ sudo hostnamectl set-hostname sonarqube
+ubuntu@ip-172-31-19-11:~$ /bin/bash
+ubuntu@sonarqube:~$
+ubuntu@sonarqube:~$ sudo apt update
+
+ubuntu@sonarqube:~$ sudo apt install openjdk-17-jre
+
+
+
+
+
+
