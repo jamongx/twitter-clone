@@ -1,0 +1,1 @@
+- Document all the steps, so that they can be replicated or understood by other team members in the future. 

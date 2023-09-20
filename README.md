@@ -33,8 +33,26 @@
 
 #### Build CI/CD pipeline
 - Build CI/CD pipeline on AWS, using Ansible, Jenkins, GitHub, Docker, Kubernetes and SonarQube.
+- This includes required software, environment variable settings, database configurations, etc.
 
-- [Development Environment Setup](docs/cicd/development-setup.md)
+- [Basic Preparations](docs/cicd/basic-prparations.md)
+- [AWS Configuration](docs/cicd/aws.md)
+- [Git Repository](docs/cicd/git-repository.md)
+- [Install Jenkins](docs/cicd/jenkins.md)
+- [Install Ansible](docs/cicd/ansible.md)
+- [Jenkins & Git Integration](docs/cicd/jenkins-git-integration.md)
+- [Configure Jenkins Pipeline](docs/cicd/config-jenkins-pipeline.md)
+- [Write a Dockerfile](docs/cicd/write-dockerfile.md)
+- [Trigger Build](docs/cicd/trigger-build.md)
+- [Run Tests](docs/cicd/run-tests.md)
+- [Docker Build](docs/cicd/docker-build.md)
+- [Push to Docker Registry](docs/cicd/push-docker-registry.md)
+- [Write Ansible Playbook](docs/cicd/write-ansible-playbook.md)
+- [Run Ansible Playbook](docs/cicd/run-ansible-playbook.md)
+- [Create Kubernetes YAML Files](docs/cicd/kubernetes-yaml-files.md)
+- [Kubernetes Deployment](docs/cicd/kubernetes-deployment.md)
+- [Monitoring and Logging](docs/cicd/monitoring-logging.md)
+- [Documentation](docs/cicd/documentation.md)
 
 
 ### Development Plan

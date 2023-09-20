@@ -1,0 +1,1 @@
+- Once the code is committed and pushed to the Git repository, Jenkins will trigger the pipeline.

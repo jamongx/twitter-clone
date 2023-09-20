@@ -1,0 +1,1 @@
+- If tests pass, the pipeline should build a Docker image using the Dockerfile you created.

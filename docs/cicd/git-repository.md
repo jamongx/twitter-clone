@@ -1,3 +1,5 @@
+- Create a Git repository where I'll store my code. This could be on GitHub, GitLab, or any other Git-based SCM.
+- Establish the project folders and directory structure
 
 ```
 twitter-clone/

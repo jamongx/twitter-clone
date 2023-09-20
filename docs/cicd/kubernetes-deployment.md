@@ -1,0 +1,1 @@
+ - The pipeline should then apply these YAML files to your Kubernetes cluster, which could either be an AWS-managed Kubernetes service like EKS or a self-managed cluster.

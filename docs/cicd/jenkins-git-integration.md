@@ -1,0 +1,1 @@
+- Configure Jenkins to poll your Git repository or set up webhooks to trigger a new build upon every commit or pull request.

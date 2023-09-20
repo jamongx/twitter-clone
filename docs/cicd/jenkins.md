@@ -1,4 +1,4 @@
-
+- Install Jenkins on an AWS EC2 instance and complete its initial setup.
 
 ### check public ip addr of jenkins instance
 3.142.218.122 
