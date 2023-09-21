@@ -1,9 +1,9 @@
 ### Twitter (Clone)
-- Personal project, Twitter clone that is based on a microservices architecture
+Personal project, Twitter clone that is based on a microservices architecture
 
 
 ### Considerations
-- There are several considerations to ensure that the system in a microservices architecture is robust, scalable, and maintainable.
+There are several considerations to ensure that the system in a microservices architecture is robust, scalable, and maintainable.
 
 - [Design and Decoupling](docs/considerations/design-and-decoupling.md)
 - [Data Management](docs/considerations/data-management.md)
@@ -19,7 +19,7 @@
 
 
 ### System Design
-- High level design and architecture of the system.
+High level design and architecture of the system.
 
 - [Requirements](docs/system_design/requirement.md)
 - [Back of the envelope estimation](docs/system_design/back-of-the-envelope-estimation.md)
@@ -31,9 +31,9 @@
 - [Detailed design](docs/system_design/detailed-design.md)
 
 
-#### Build CI/CD pipeline
-- Build CI/CD pipeline on AWS, using Ansible, Jenkins, GitHub, Docker, Kubernetes and SonarQube.
-- This includes required software, environment variable settings, database configurations, etc.
+### Build CI/CD pipeline
+Build CI/CD pipeline on AWS, using Ansible, Jenkins, GitHub, Docker, Kubernetes and SonarQube.
+This includes required software, environment variable settings, database configurations, etc.
 
 - [Basic Preparations](docs/cicd/basic-prparations.md)
 - [AWS Configuration](docs/cicd/aws.md)
@@ -56,7 +56,7 @@
 
 
 ### Development Plan
-- Develop the services including database schemas, API endpoints, and class diagrams according to the plan.
+Develop the services including database schemas, API endpoints, and class diagrams according to the plan.
 
 
 #### Phase 1
@@ -77,7 +77,7 @@
 
 
 ### [Test Plan](docs/test-plan.md)
-- Specifies the testing strategy and individual test cases.
+Specifies the testing strategy and individual test cases.
 
 
 ### Contribution Guidelines
