@@ -1,4 +1,0 @@
-- API Documentation: Keep up-to-date documentation to explain how services interact.
-- Versioning: Use API versioning to handle changes without affecting existing clients.
-- Service Discovery: Utilize service discovery mechanisms to allow services to find each other dynamically.
-- Configuration Management: Externalize configuration details and manage them centrally.

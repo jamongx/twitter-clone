@@ -1,2 +1,0 @@
-- I use GitHub Issues for tracking.
-- Before submitting a new issue, please check to see if a similar issue already exists.

@@ -1,1 +1,0 @@
- - The Docker image should then be pushed to a registry that your Kubernetes cluster can access, such as AWS ECR (Elastic Container Registry).

@@ -1,1 +1,0 @@
-- Set up your AWS environment, including VPC, EC2 instances, Security Groups, etc.

@@ -1,1 +1,0 @@
-- Create an Ansible Playbook for provisioning your Kubernetes cluster and any other required AWS infrastructure.

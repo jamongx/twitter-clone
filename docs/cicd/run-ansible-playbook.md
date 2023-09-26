@@ -1,1 +1,0 @@
-- Use Jenkins or another EC2 instance to run the Ansible Playbook to provision your resources.

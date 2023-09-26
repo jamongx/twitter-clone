@@ -1,2 +1,0 @@
-- Make sure to write unit tests for new features and to update tests for any modified existing features.
-- All tests should pass before submitting a pull request.
