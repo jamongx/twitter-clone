@@ -6,7 +6,7 @@
 - https://open.digdeep.i234.me/projects/twitter-clone/
 
 
-# Development Plan - Phase 1
+# Development Phase 1
 - [Gateway Service](https://github.com/jamongx/twitter-clone-gateway-service)
 - [Service Discovery](https://github.com/jamongx/twitter-clone-service-discovery)
 - [Logging Service](https://github.com/jamongx/twitter-clone-logging-service)
@@ -14,7 +14,7 @@
 - [User Service](https://github.com/jamongx/twitter-clone-user-service)
 
 
-# Development Plan - Phase 2
+# Development Phase 2
 - Tweet Service
 - Media Service
 - Timeline Service
