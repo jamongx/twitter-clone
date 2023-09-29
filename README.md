@@ -2,7 +2,7 @@
 - https://open.digdeep.i234.me/projects/twitter-clone/wiki
 
 
-# Issue Tracker (Open project)
+# Issue Tracker
 - https://open.digdeep.i234.me/projects/twitter-clone/
 
 
