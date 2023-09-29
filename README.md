@@ -7,7 +7,7 @@
 
 
 # Development Phase 1
-- [CI/CD Pipeline](https://open.digdeep.i234.me/projects/twitter-clone/wiki/build-ci-slash-cd-pipeline)
+- [Build CI/CD Pipeline](https://open.digdeep.i234.me/projects/twitter-clone/wiki/build-ci-slash-cd-pipeline)
 
 # Development Phase 2
 - [User Service](https://github.com/jamongx/twitter-clone-user-service)
