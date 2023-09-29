@@ -8,10 +8,10 @@
 
 # Development Phase 1
 - [User Service](https://github.com/jamongx/twitter-clone-user-service)
-- [Gateway Service](https://github.com/jamongx/twitter-clone-gateway-service)
-- [Service Discovery](https://github.com/jamongx/twitter-clone-service-discovery)
-- [Logging Service](https://github.com/jamongx/twitter-clone-logging-service)
-- [Config Service](https://github.com/jamongx/twitter-clone-config-service)
+- Gateway Service
+- Service Discovery
+- Logging Service
+- Config Service
 
 
 # Development Phase 2
