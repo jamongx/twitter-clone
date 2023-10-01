@@ -19,7 +19,7 @@
 - https://github.com/jamongx/twitter-clone/issues
  
 # Development Plan (Current Stage/Status)
-- (Closed) [Build CI/CD Pipeline
+- (Closed) Build CI/CD Pipeline
   - https://github.com/jamongx/twitter-clone/wiki#build-cicd-pipeline
 - (In Progress) User Service
   - https://github.com/jamongx/twitter-clone/wiki/user-service 
