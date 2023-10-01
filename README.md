@@ -23,11 +23,9 @@
 - https://github.com/jamongx/twitter-clone/wiki
 
 # Development Plan (Current Stage/Status)
-- (Closed) Build CI/CD Pipeline
-  - https://github.com/jamongx/twitter-clone/wiki#build-cicd-pipeline
-- (In Progress) User Service
-  - https://github.com/jamongx/twitter-clone/wiki/user-service 
-  - https://github.com/jamongx/twitter-clone-user-service
+- (Closed) [Build CI/CD Pipeline](https://github.com/jamongx/twitter-clone/wiki#build-cicd-pipeline)
+- (In Progress) [User Service](https://github.com/jamongx/twitter-clone/wiki/user-service)
+  - [Source Code](https://github.com/jamongx/twitter-clone-user-service)
 - Gateway Service
 - Service Discovery
 - Logging Service
