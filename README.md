@@ -1,5 +1,5 @@
 # Wiki
-- https://open.digdeep.i234.me/projects/twitter-clone/wiki
+- https://github.com/jamongx/twitter-clone/wiki
 
 
 # Issue Tracker
