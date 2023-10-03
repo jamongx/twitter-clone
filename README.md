@@ -1,10 +1,6 @@
 # Project Description:
 - Developing a Twitter clone with a focus on implementing a microservices architecture and integrating a CI/CD pipeline.
 
-# Objectives & Challenges:
-- To gain hands-on experience with microservices architecture and CI/CD pipeline integration
-- To enhance relevant skills and solidify knowledge in these domains.
-
 # Technologies:
 - AWS, Amazon Linux
 - Jenkins, SonarQube, Ansible, Maven, Docker, Kubernetes
@@ -16,7 +12,7 @@
 - [Wiki](https://github.com/jamongx/twitter-clone/wiki)
 
 
-# Development Plan (Current Stage/Status)
+# Development Plan (Current Stage)
 ## Phase 1 (Completed)
 - Sep 2023.
 - [Build CI/CD Pipeline](https://github.com/jamongx/twitter-clone/wiki/build-CI-CD-pipeline)
