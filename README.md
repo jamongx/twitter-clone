@@ -19,7 +19,7 @@
 # Development Plan (Current Stage/Status)
 ## Phase 1 (Completed)
 - Sep 2023.
-- [Build CI/CD Pipeline](https://github.com/jamongx/twitter-clone/wiki#build-cicd-pipeline)
+- [Build CI/CD Pipeline](https://github.com/jamongx/twitter-clone/wiki/build-CI-CD-pipeline)
 
 ## Phase 2 (In Progress)
 - Oct 2023.
