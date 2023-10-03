@@ -15,20 +15,29 @@
 - [Issue tracker](https://github.com/jamongx/twitter-clone/issues)
 - [Wiki](https://github.com/jamongx/twitter-clone/wiki)
 
-# Expected Completion Date:
-- December 2023.
 
 # Development Plan (Current Stage/Status)
-- [(Closed) Build CI/CD Pipeline](https://github.com/jamongx/twitter-clone/wiki#build-cicd-pipeline)
-- [(In Progress) User Service](https://github.com/jamongx/twitter-clone-user-service)
+## Phase 1 (Completed)
+- Sep 2023.
+- [Build CI/CD Pipeline](https://github.com/jamongx/twitter-clone/wiki#build-cicd-pipeline)
+
+## Phase 2 (In Progress)
+- Oct 2023.
+- [User Service](https://github.com/jamongx/twitter-clone-user-service)
 - Gateway Service
 - Service Discovery
 - Logging Service
 - Config Service
+
+## Phase 3
 - Tweet Service
 - Media Service
+
+## Phase 4
 - Timeline Service
 - Notification Service
+
+## Phase 5
 - Search Service
 - Message Service
 - Ranking Service
