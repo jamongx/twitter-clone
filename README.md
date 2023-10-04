@@ -20,10 +20,12 @@
 ## Phase 2 (In Progress)
 - Oct 2023.
 - [User Service](https://github.com/jamongx/twitter-clone-user-service)
-- Gateway Service
-- Service Discovery
-- Logging Service
-- Config Service
+- [Gateway Service](https://github.com/jamongx/twitter-clone-gateway-service)
+- [Eureka Service (Service Discovery & Service Registry)](https://github.com/jamongx/twitter-clone-eureka-service)
+- [Logging Service](https://github.com/jamongx/twitter-clone-logging-service)
+- [Config Service](https://github.com/jamongx/twitter-clone-config-service)
+
+
 
 ## Phase 3
 - Tweet Service
