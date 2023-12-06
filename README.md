@@ -25,24 +25,27 @@
 - [Build CI/CD Pipeline](https://github.com/jamongx/twitter-clone/wiki/build-CI-CD-pipeline)
 
 
-## Phase 2 (In Progress)
+## Phase 2 (Completed)
 - Oct 2023.
-- [User Service](https://github.com/jamongx/twitter-clone-user-service)
 - [Gateway Service](https://github.com/jamongx/twitter-clone-gateway-service)
 - [Eureka Service (Service Discovery & Service Registry)](https://github.com/jamongx/twitter-clone-eureka-service)
 - [Config Service](https://github.com/jamongx/twitter-clone-config-service)
 
+## Phase 3 (In Progress)
+- Dec 2023.
+- [Frontend React App](https://github.com/jamongx/twitter-clone-react)
+- [User Service](https://github.com/jamongx/twitter-clone-user-service)
 
-## Phase 3
+## Phase 4
 - [Logging Service](https://github.com/jamongx/twitter-clone-logging-service)
 - Tweet Service
 - Media Service
 
-## Phase 4
+## Phase 5
 - Timeline Service
 - Notification Service
 
-## Phase 5
+## Phase 6
 - Search Service
 - Message Service
 - Ranking Service
