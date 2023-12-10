@@ -14,9 +14,11 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/jamongx/twitter-clone-config-server-repo
+          uri: https://github.com/jamongx/twitter-clone/
+          searchPaths: config-repo
           clone-on-start: true
           default-label: main
+
 
 eureka:
   client:
