@@ -1,0 +1,24 @@
+server:
+  port: 9050
+
+#logging:
+#  level:
+#    root: DEBUG
+
+spring:
+  application:
+    name: config-service
+  profiles:
+    active: dev
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/jamongx/twitter-clone-config-server-repo
+          clone-on-start: true
+          default-label: main
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9040/eureka/
