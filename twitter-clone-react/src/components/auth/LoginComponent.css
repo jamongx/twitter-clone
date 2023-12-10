@@ -1,0 +1,77 @@
+/* LoginComponent.css */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f8fa; /* Background color can be changed */
+}
+
+.login-content {
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.login-content h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.login-button {
+  display: block;
+  width: 100%;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.login-button.google {
+  background-color: #fff;
+  color: #000;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+}
+
+.login-button.apple {
+  background-color: #000;
+  color: #fff;
+}
+
+.login-button.create-account {
+  background-color: #1da1f2;
+  color: #fff;
+}
+
+.login-button.create-account:hover {
+  background-color: #0c85d0; /* Change color on hover */
+}
+
+.divider {
+  color: #657786;
+  margin: 20px 0;
+}
+
+.terms {
+  color: #657786;
+  font-size: 0.8rem;
+  margin-bottom: 30px;
+}
+
+.login-footer {
+  font-size: 0.9rem;
+}
+
+.sign-in {
+  color: #1da1f2;
+  cursor: pointer;
+  font-weight: bold;
+}

@@ -1,0 +1,14 @@
+.birth-date {
+  display: flex;
+  justify-content: space-between;
+}
+
+.birth-date select {
+  flex: 1;
+  margin-right: 5px;
+}
+
+/* Last select should not have margin on the right */
+.birth-date select:last-child {
+  margin-right: 0;
+}

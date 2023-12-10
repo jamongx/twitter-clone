@@ -1,0 +1,43 @@
+/* NavigationComponent.css */
+.navigation {
+  width: 250px; /* Width of the navigation bar */
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.nav-logo {
+  /* Style for the logo */
+  padding-bottom: 20px;
+}
+
+.nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links li a {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  color: #333; /* Can be changed to match Twitter's color scheme */
+  text-decoration: none;
+  font-size: 18px;
+  border-radius: 30px;
+  transition: background-color 0.2s;
+}
+
+.nav-links li a:hover {
+  background-color: #e8f5fe; /* Change color on hover */
+}
+
+.nav-links li a i {
+  margin-right: 20px;
+}
+
+/* Class names added for using FontAwesome icons */
+.fab, .fas {
+  font-size: 20px;
+}

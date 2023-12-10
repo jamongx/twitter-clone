@@ -1,0 +1,61 @@
+/* App.css */
+
+.app {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  border: 1px solid #e6ecf0; /* 경계선을 추가하여 레이아웃을 구분합니다. */
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2); /* 약간의 그림자를 추가하여 입체감을 줍니다. */
+}
+
+.navigation {
+  flex: 1;
+  border-right: 1px solid #e6ecf0; /* 네비게이션과 메인 컨텐츠 사이에 경계선을 추가합니다. */
+  padding: 20px; /* 패딩을 추가하여 내용물과 경계 사이에 공간을 줍니다. */
+}
+
+.main-content {
+  flex: 3;
+  padding: 20px; /* 메인 컨텐츠 영역에도 패딩을 적용합니다. */
+}
+
+.sidebar {
+  flex: 2;
+  border-left: 1px solid #e6ecf0; /* 사이드바와 메인 컨텐츠 사이에 경계선을 추가합니다. */
+  padding: 20px; /* 사이드바에 패딩을 추가합니다. */
+}
+
+/* 추가적인 스타일링을 적용하여 더 세련된 레이아웃을 만듭니다. */
+.navigation .menu-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 0; /* 메뉴 아이템 간의 간격을 줍니다. */
+}
+
+.navigation .menu-item .icon {
+  margin-right: 10px; /* 아이콘과 텍스트 사이의 간격을 줍니다. */
+}
+
+.main-content .tweet {
+  border-bottom: 1px solid #e6ecf0; /* 각 트윗 아래에 경계선을 추가합니다. */
+  padding: 20px 0; /* 트윗 내용물 사이의 패딩을 적용합니다. */
+}
+
+.sidebar .trend {
+  margin-bottom: 20px; /* 추천 트렌드 간의 간격을 줍니다. */
+}
+
+/* 반응형 레이아웃을 위한 미디어 쿼리 */
+@media (max-width: 1200px) {
+  .sidebar {
+    display: none; /* 뷰포트의 너비가 1200px 이하일 때 사이드바를 숨깁니다. */
+  }
+
+  .navigation {
+    flex: 0 0 50px; /* 네비게이션 바의 최소 크기를 설정합니다. */
+  }
+
+  .main-content {
+    flex: 1; /* 가능한 모든 공간을 메인 컨텐츠가 차지하도록 합니다. */
+  }
+}

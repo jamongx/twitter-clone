@@ -1,0 +1,28 @@
+.tweet-home-component {
+    font-family: Arial, sans-serif;
+  }
+  
+  .tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+    margin-right: 10px;
+  }
+  
+  .tab.active {
+    border-bottom: 2px solid blue;
+  }
+  
+  .content {
+    margin: 0 auto;
+    max-width: 600px;
+  }
+  

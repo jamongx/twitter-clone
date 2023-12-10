@@ -1,0 +1,26 @@
+/* NotificationsComponent.css */
+.notifications-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  height: 100vh;
+  background-color: #f5f8fa;
+}
+
+.notifications-content {
+  text-align: center;
+  max-width: 600px;
+}
+
+.notifications-content h2 {
+  color: #14171a;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.notifications-content p {
+  color: #657786;
+  margin-bottom: 10px;
+}

@@ -1,0 +1,31 @@
+.follow-tabs-container {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  background: #fff;
+  margin-bottom: -1px; /* Overlap the border of the tab content */
+}
+
+.tab {
+  padding: 10px 20px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-bottom: none;
+  margin: 0 5px;
+}
+
+.tab.active {
+  background-color: #f8f8f8;
+  border-top: 2px solid #1da1f2;
+  font-weight: bold;
+}
+
+.tab-content {
+  border: 1px solid #ccc;
+  padding: 20px;
+  background-color: #f8f8f8;
+}

@@ -1,0 +1,37 @@
+.tweet-post-component {
+  display: flex;
+  align-items: flex-start;
+  padding: 10px;
+  background-color: white;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.user-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.tweet-textarea {
+  flex: 1;
+  border: none;
+  outline: none;
+  resize: none;
+  padding: 8px;
+  font-size: 16px;
+}
+
+.tweet-actions {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+
+.tweet-actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}

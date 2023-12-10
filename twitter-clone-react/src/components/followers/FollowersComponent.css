@@ -1,0 +1,43 @@
+.followers-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.follow-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.follows-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+}
+
+.follow-item:last-child {
+    border-bottom: none;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.user-info {
+    flex: 1;
+}
+
+.username {
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.bio {
+    font-size: 0.9em;
+    color: #666;
+}

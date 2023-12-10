@@ -1,0 +1,18 @@
+/*.create-account-modal {
+}*/
+
+.next-button {
+  padding: 10px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.use-email-button {
+  background: none;
+  border: none;
+  color: #1da1f2;
+  cursor: pointer;
+}

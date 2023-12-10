@@ -1,0 +1,64 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* 다른 요소들 위에 표시됩니다 */
+}
+
+.modal-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%; /* 기본 너비 설정 */
+  max-width: 400px; /* 최대 너비 설정 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: center; /* Align items to the center */
+  align-items: center;
+  margin-bottom: 20px;
+  position: relative; /* Set relative positioning for the container */
+}
+
+.modal-header h2 {
+  justify-content: center;
+  align-items: center;
+}
+
+
+.close-button {
+  position: absolute; /* Absolute positioning for the button */
+  left: 0; /* Position it at the left edge */
+  border: none;
+  background: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.modal-content input,
+.modal-content textarea,
+.modal-content select {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.modal-footer {
+  margin-top: 20px;
+  text-align: center;
+}

@@ -1,0 +1,33 @@
+/* .sign-in-modal{
+} */
+
+.sign-in-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  /* Additional styles can be defined here */
+}
+
+.next-button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  /* Additional styles can be defined here */
+}
+
+.divider {
+  margin: 20px 0;
+  /* Additional styles can be defined here */
+}
+
+.forgot-password {
+  display: block;
+  margin-top: 10px;
+  /* Additional styles can be defined here */
+}
+
+.sign-up-link {
+  color: #1da1f2;
+  text-decoration: none;
+}

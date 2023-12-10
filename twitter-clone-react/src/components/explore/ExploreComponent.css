@@ -1,0 +1,29 @@
+/* exploreComponent.css */
+.explore-container {
+  padding: 20px;
+  background-color: #f5f8fa;
+  min-height: 100vh; /* Full screen height */
+}
+
+.explore-header {
+  margin-bottom: 20px;
+}
+
+.explore-content img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.explore-item {
+  padding: 10px 0;
+  border-bottom: 1px solid #e1e8ed;
+}
+
+.explore-item:last-child {
+  border-bottom: none;
+}
+
+.explore-item p {
+  margin: 5px 0;
+}

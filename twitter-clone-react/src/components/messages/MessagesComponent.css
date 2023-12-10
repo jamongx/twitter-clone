@@ -1,0 +1,43 @@
+/* DirectMessageComponent.css */
+.messages-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #f5f8fa;
+  border: 1px solid #e1e8ed;
+  border-radius: 10px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.messages-content {
+  text-align: center;
+}
+
+.messages-content h2 {
+  color: #14171a;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.messages-content p {
+  color: #657786;
+  margin-bottom: 20px;
+}
+
+.messages-button {
+  background-color: #1da1f2;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.messages-button:hover {
+  background-color: #1991da;
+}
