@@ -1,0 +1,18 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: USER-SERVICE
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/api/user/**
+        - id: NEWS-SERVICE
+          uri: lb://NEWS-SERVICE
+          predicates:
+            - Path=/api/news/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

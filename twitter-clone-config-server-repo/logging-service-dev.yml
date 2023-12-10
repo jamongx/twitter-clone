@@ -1,0 +1,8 @@
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: logging_service_db
+      username: admin_logging
+      password: 1234
