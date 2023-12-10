@@ -1,0 +1,25 @@
+server:
+  port: 9010
+
+spring:
+  application:
+    name: user-service
+  profiles:
+    active: dev
+  config:
+    import: optional:configserver:http://localhost:9050
+  cloud:
+    config:
+      enabled: true
+
+app:
+  jwt-secret: 416f452f4f702beb93566cbfaddeb792ce0a74a0f4771ac71eeb2312657feae7
+  jwt-expiration-milliseconds: 604800000
+  default-avatar-url: /images/twitter-default-avatar.jpg
+  users-avatar-dir: C:\Users\jason\twitter-clone\twitter-clone-react\public\avatar
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9040/eureka/

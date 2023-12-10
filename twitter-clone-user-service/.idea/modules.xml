@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../twitter-clone-config-service/config-service.iml" filepath="$PROJECT_DIR$/../twitter-clone-config-service/config-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../twitter-clone-eureka-service/eureka-service.iml" filepath="$PROJECT_DIR$/../twitter-clone-eureka-service/eureka-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../twitter-clone-gateway-service/gateway-service.iml" filepath="$PROJECT_DIR$/../twitter-clone-gateway-service/gateway-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../twitter-clone-logging-service/logging-service.iml" filepath="$PROJECT_DIR$/../twitter-clone-logging-service/logging-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/twitter-clone-user-service.iml" filepath="$PROJECT_DIR$/.idea/twitter-clone-user-service.iml" />
+    </modules>
+  </component>
+</project>
