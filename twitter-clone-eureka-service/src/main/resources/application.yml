@@ -1,0 +1,22 @@
+server:
+  port: 9040
+
+spring:
+  application:
+    name: eureka-service
+  profiles:
+    active: dev
+
+#set Disable eureka client
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://localhost:9040/eureka
+
+
+
+
+
+
