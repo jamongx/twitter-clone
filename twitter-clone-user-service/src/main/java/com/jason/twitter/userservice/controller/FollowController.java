@@ -3,6 +3,8 @@ package com.jason.twitter.userservice.controller;
 import com.jason.twitter.userservice.dto.FollowDto;
 import com.jason.twitter.userservice.dto.FollowerDto;
 import com.jason.twitter.userservice.service.FollowService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,36 +14,39 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
+@RequestMapping("/api/follows")
 @AllArgsConstructor
 public class FollowController {
 
+    private static final Logger logger = LoggerFactory.getLogger(FollowController.class);
     private final FollowService followService;
 
-    @GetMapping("/api/following/{userId}")
-    public ResponseEntity<List<FollowerDto>> getFollowing(@PathVariable Long userId) {
-        List<FollowerDto> followDtos = followService.getFollowing(userId);
-        System.out.println("TEST=" + followDtos);
+    @GetMapping("/{id}/following")
+    public ResponseEntity<List<FollowerDto>> getFollowing(@PathVariable Long id) {
+        logger.info("Getting following for user id: {}", id);
+        List<FollowerDto> followDtos = followService.getFollowing(id);
         return ResponseEntity.ok(followDtos);
     }
 
-    @GetMapping("/api/followers/{userId}")
-    public ResponseEntity<List<FollowerDto>> getFollowers(@PathVariable Long userId) {
-        List<FollowerDto> followerDtos = followService.getFollowers(userId);
-        System.out.println("TEST=" + followerDtos);
+    @GetMapping("/{id}/followers")
+    public ResponseEntity<List<FollowerDto>> getFollowers(@PathVariable Long id) {
+        logger.info("Getting followers for user id: {}", id);
+        List<FollowerDto> followerDtos = followService.getFollowers(id);
         return ResponseEntity.ok(followerDtos);
     }
 
-
-    @PostMapping("/api/follow")
+    @PostMapping()
     public ResponseEntity<FollowDto> addFollow(@RequestBody FollowDto followDto) {
-        FollowDto addFollowDto = followService.follow(followDto);
-        return new ResponseEntity<>(addFollowDto, HttpStatus.CREATED);
+        logger.info("Creating followers for follower id: {}, following id: {}",
+                followDto.getFollowersId(), followDto.getFollowingId());
+        FollowDto addFollowDto = followService.createFollow(followDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(addFollowDto);
     }
 
-    @DeleteMapping("/api/follow/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteFollow(@PathVariable Long id) {
-        System.out.println("TEST=" + id);
-        followService.deleteById(id);
+        logger.info("Deleting a follow by follow id: {}", id);
+        followService.deleteFollow(id);
         return ResponseEntity.noContent().build();
     }
 
