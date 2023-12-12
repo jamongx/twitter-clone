@@ -12,11 +12,13 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class ProfileDto {
+public class UserProfileDto {
+
     private Long id;
     private String avatarUrl;
     private String displayName;
     private String bio;
     private boolean active;
     private LocalDate birthDate;
+
 }
