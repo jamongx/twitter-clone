@@ -2,18 +2,16 @@
 //const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000';
 //const SECRET_KEY = process.env.REACT_APP_SECRET_KEY;
 const AUTH_REST_API_URL = 'http://localhost:9010/api/auth';
-const FOLLOWERS_REST_API_URL = 'http://localhost:9010/api/followers';
-const FOLLOWING_REST_API_URL = 'http://localhost:9010/api/following';
 const FOLLOWS_REST_API_URL = 'http://localhost:9010/api/follows';
-const BASE_REST_API_URL = 'http://localhost:9010/api/users';
+const USERS_REST_API_URL = 'http://localhost:9010/api/users';
+const USER_PROFILES_REST_API_URL = 'http://localhost:9010/api/user_profiles';
 
 export const Config = {
   //apiUrl: API_URL,
   //secretKey: SECRET_KEY,
-  BASE_REST_API_URL: BASE_REST_API_URL,
+  USERS_REST_API_URL: USERS_REST_API_URL,
+  USER_PROFILES_REST_API_URL: USER_PROFILES_REST_API_URL,
   AUTH_REST_API_URL: AUTH_REST_API_URL,
-  FOLLOWERS_REST_API_URL: FOLLOWERS_REST_API_URL,
-  FOLLOWING_REST_API_URL: FOLLOWING_REST_API_URL,
   FOLLOWS_REST_API_URL: FOLLOWS_REST_API_URL,
 };
 
