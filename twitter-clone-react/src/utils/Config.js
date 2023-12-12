@@ -1,10 +1,10 @@
 // config.js
 //const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000';
 //const SECRET_KEY = process.env.REACT_APP_SECRET_KEY;
-const AUTH_REST_API_URL = 'http://localhost:9010/api/auth';
-const FOLLOWS_REST_API_URL = 'http://localhost:9010/api/follows';
-const USERS_REST_API_URL = 'http://localhost:9010/api/users';
-const USER_PROFILES_REST_API_URL = 'http://localhost:9010/api/user_profiles';
+const AUTH_REST_API_URL = 'http://localhost:9010/api/v1/auth';
+const FOLLOWS_REST_API_URL = 'http://localhost:9010/api/v1/follows';
+const USERS_REST_API_URL = 'http://localhost:9010/api/v1/users';
+const USER_PROFILES_REST_API_URL = 'http://localhost:9010/api/v1/user_profiles';
 
 export const Config = {
   //apiUrl: API_URL,
