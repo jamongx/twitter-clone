@@ -165,3 +165,5 @@ sketch
 .history
 .ionide
 
+# User's avatar image directory
+public/avatar
