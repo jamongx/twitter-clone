@@ -40,6 +40,7 @@ public class UserProfileServiceImpl implements UserProfileService {
     }
 
     @Override
+    @Transactional
     public AvatarDto updateAvatar(Long id, MultipartFile file) {
         if (file.isEmpty()) {
             throw new IllegalArgumentException("Empty file cannot be uploaded");
