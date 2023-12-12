@@ -14,7 +14,7 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/follows")
+@RequestMapping("/api/v1/follows")
 @AllArgsConstructor
 public class FollowController {
 

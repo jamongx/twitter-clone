@@ -17,6 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
 @Configuration
@@ -40,7 +41,7 @@ public class SpringSecurityConfig {
 
         httpSecurity.csrf((csrf) -> csrf.disable())
                 .authorizeHttpRequests(authorize -> {
-                    authorize.requestMatchers( "/api/auth/**").permitAll();
+                    authorize.requestMatchers("/api/v1/auth/**").permitAll();
                     authorize.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
                     authorize.anyRequest().authenticated();
                 }).httpBasic(Customizer.withDefaults());
