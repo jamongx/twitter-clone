@@ -12,8 +12,8 @@ public interface FollowService {
 
     List<FollowerDto> getFollowers(Long userId);
 
-    FollowDto follow(FollowDto followDto);
+    FollowDto createFollow(FollowDto followDto);
 
-    void deleteById(Long id);
+    void deleteFollow(Long id);
 
 }
