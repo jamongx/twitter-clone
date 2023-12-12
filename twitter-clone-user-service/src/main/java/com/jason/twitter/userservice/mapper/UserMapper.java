@@ -9,10 +9,10 @@ public class UserMapper {
         return new FollowerDto(
                 followerId,
                 user.getId(),
-                user.getAvatarUrl(),
+                user.getUserProfile().getAvatarUrl(),
                 user.getUsername(),
-                user.getDisplayName(),
-                user.getBio()
+                user.getUserProfile().getDisplayName(),
+                user.getUserProfile().getBio()
         );
     }
 
@@ -21,14 +21,14 @@ public class UserMapper {
                 token,
                 tokenType,
                 user.getId(),
-                user.getAvatarUrl(),
+                user.getUserProfile().getAvatarUrl(),
                 user.getUsername(),
                 user.getEmail(),
-                user.getDisplayName(),
-                user.getBio(),
-                user.isActive(),
+                user.getUserProfile().getDisplayName(),
+                user.getUserProfile().getBio(),
+                user.getUserProfile().isActive(),
                 user.getCreatedAt(),
-                user.getBirthDate(),
-                user.getRoles());
+                user.getUserProfile().getBirthDate(),
+                user.getUserProfile().getRoles());
     }
 }
