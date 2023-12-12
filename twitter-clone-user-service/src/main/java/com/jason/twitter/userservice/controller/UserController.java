@@ -1,7 +1,5 @@
 package com.jason.twitter.userservice.controller;
 
-import com.jason.twitter.userservice.dto.AvatarDto;
-import com.jason.twitter.userservice.dto.ProfileDto;
 import com.jason.twitter.userservice.dto.UserDto;
 import com.jason.twitter.userservice.service.UserService;
 import lombok.AllArgsConstructor;
@@ -9,8 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 //import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -38,11 +34,11 @@ public class UserController {
     @PostMapping
     public ResponseEntity<UserDto> addUser(@RequestBody UserDto userDto) {
         UserDto addUserDto = userService.addUser(userDto);
-        return new ResponseEntity<>(addUserDto, HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED).body(addUserDto);
     }
 
-    @PutMapping("{id}")
-    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto, @PathVariable("id") Long id){
+    @PutMapping("/{id}")
+    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto, @PathVariable Long id){
         UserDto updatedUser = userService.updateUser(userDto, id);
         return ResponseEntity.ok(updatedUser);
     }
@@ -51,37 +47,6 @@ public class UserController {
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.deleteById(id);
         return ResponseEntity.noContent().build();
-    }
-
-    // Build Active User REST API
-    //@PreAuthorize("hasRole('ADMIN')")
-    @PatchMapping("{id}/active")
-    public ResponseEntity<UserDto> activeUser(@PathVariable("id") Long id){
-        UserDto updatedUser = userService.activeUser(id);
-        return ResponseEntity.ok(updatedUser);
-    }
-
-    // Build Deactive USER REST API
-    //@PreAuthorize("hasRole('ADMIN')")
-    @PatchMapping("{id}/deactive")
-    public ResponseEntity<UserDto> inCompleteTodo(@PathVariable("id") Long id){
-        UserDto updatedUser = userService.deactiveUser(id);
-        return ResponseEntity.ok(updatedUser);
-    }
-
-    @PostMapping("{id}/avatar")
-    public ResponseEntity<AvatarDto> addAvatar(@PathVariable("id") Long id, @RequestParam("file") MultipartFile file) {
-        if (file.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "File is empty");
-        }
-        AvatarDto updatedAvatar = userService.addAvatar(id, file);
-        return ResponseEntity.ok(updatedAvatar);
-    }
-
-    @PatchMapping("{id}/profile")
-    public ResponseEntity<ProfileDto> updateProfile(@PathVariable("id") Long id, @RequestBody ProfileDto profileDto){
-        ProfileDto updatedProfileDto = userService.updateProfile(profileDto);
-        return ResponseEntity.ok(updatedProfileDto);
     }
 
 }
