@@ -63,14 +63,6 @@ spring:
 ```
 
 ## Remote Config File
-- `https://github.com/jamongx/twitter-clone-config-server-repo/application-dev.yml`
-```json
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:9040/eureka/
-```
-
 - `https://github.com/jamongx/twitter-clone-config-server-repo/user-service-dev.yml`
 ```yml
 spring:
@@ -135,187 +127,416 @@ Passwords should be stored securely.
 
 ## Database Schema
 - Overview of the database schema, including tables, columns, types, and relationships.
-```postgresql
-CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
-    email VARCHAR(255) UNIQUE NOT NULL,
-    username VARCHAR(255) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL, -- Stored as a hashed value
-    name VARCHAR(255),
-    bio TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-```
 
-```postgresql
-CREATE TABLE follows (
-    follower_id INTEGER REFERENCES users(id),
-    followed_id INTEGER REFERENCES users(id),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (follower_id, followed_id)
-);
-```
+### Users Table
 
-```postgresql
-CREATE TABLE password_reset_tokens (
-    id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES users(id),
-    token VARCHAR(255) UNIQUE NOT NULL,
-    expiry TIMESTAMP NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-```
+The `users` table stores the core user information. Below is the schema for the `users` table:
+- Indexes: 
+  - Primary Key: `id`
+  - Unique Constraint on `email`
+- Referenced by:
+  - `user_profiles` table (Foreign Key: `id` references `users(id)`)
+  - `user_profiles` table (Foreign Key: `user_id` references `users(id)`)
 
-```postgresql
-CREATE TABLE emails (
-    id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES users(id),
-    email VARCHAR(255) NOT NULL,
-    is_confirmed BOOLEAN DEFAULT FALSE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-```
+| Column     | Type                             | Description                  |
+|------------|----------------------------------|------------------------------|
+| id         | bigint                           | Primary key, auto-increment  |
+| username   | character varying(255)           | Username, unique             |
+| email      | character varying(255)           | User email, unique           |
+| password   | character varying(255)           | Hashed password              |
+| created_at | timestamp(6) without time zone   | Account creation timestamp   |
+| updated_at | timestamp(6) without time zone   | Last account update timestamp|
+
+
+### User Profiles Table
+The `user_profiles` table contains additional information for users. Below is the schema for the `user_profiles` table:
+
+| Column       | Type                             | Description                      |
+|--------------|----------------------------------|----------------------------------|
+| id           | bigint                           | Primary key                      |
+| active       | boolean                          | User's active status             |
+| avatar_url   | character varying(255)           | URL for user's avatar            |
+| display_name | character varying(255)           | User's display name              |
+| bio          | character varying(255)           | User biography                   |
+| birth_date   | date                             | User's date of birth             |
+| created_at   | timestamp(6) without time zone   | Account creation timestamp       |
+| updated_at   | timestamp(6) without time zone   | Last profile update timestamp    |
+| user_id      | bigint                           | Reference to user ID             |
+
+
+### Roles Table
+
+The `roles` table manages user roles within the application. Below is the schema for the `roles` table:
+- Indexes: 
+  - Primary Key: `id`
+  - Unique Constraint on `role`
+- Referenced by:
+  - `users_roles` table (Foreign Key: `role_id` references `roles(id)`)
+
+
+| Column     | Type                             | Description                  |
+|------------|----------------------------------|------------------------------|
+| id         | bigint                           | Primary key, auto-increment  |
+| created_at | timestamp(6) without time zone   | Role creation timestamp      |
+| role       | character varying(255)           | Unique role name             |
+
+
+### Users Roles Table
+
+The `users_roles` table links users with their respective roles. Below is the schema for the `users_roles` table:
+
+| Column  | Type   | Description                |
+|---------|--------|----------------------------|
+| user_id | bigint | Foreign key to user's ID   |
+| role_id | bigint | Foreign key to role's ID   |
+
+- Indexes:
+  - Primary Key: `(user_id, role_id)`
+- Foreign-key constraints:
+  - `user_id` references `user_profiles(id)`
+  - `role_id` references `roles(id)`
+
+
+
 
 # API design
 ## API Endpoints
 - Detailed specification of the API, including paths, methods, request/response bodies, status codes, and headers.
 
+## Authentication Service
+
 ### User Registration
-- Endpoint: /api/user/v1/register
-- HTTP Method: POST
-- Request Body:
+- **Endpoint**: `/api/v1/auth/register`
+- **HTTP Method**: `POST`
+- **Request Body**:
 ```json
 {
-  "username": "sampleUser",
-  "email": "sampleUser@example.com",
-  "password": "samplePassword"
+  "username": "sampleUsername",
+  "password": "samplePassword",
+  "displayName": "Sample User",
+  "email": "sample@example.com",
+  "bio": "User biography",
+  "birthDate": "1990-01-01"
 }
 ```
-- Response:
+
+- **Response**: HTTP 201 (Created):
 ```json
 {
-  "message": "Registration successful.",
-  "user": {
-    "id": 123,
-    "username": "sampleUser",
-    "email": "sampleUser@example.com"
-  }
+  "message": "User Registered Successfully!."
+}
+```
+
+- **Response**: HTTP 400 (Bad Request):
+```json
+{
+  "error": "Username already exists!"
 }
 ```
 ```json
 {
-  "error": "Username or email already exists."
+  "error": "Email already exists!"
 }
 ```
 
 ### Login
-- Endpoint: /api/user/v1/login
-- HTTP Method: POST
-- Request Body:
+- **Endpoint**: `/api/v1/auth/login`
+- **HTTP Method**: `POST`
+- **Request Body**:
 ```json
 {
-    "email": "user@example.com",
-    "username": "username",
-    "password": "password"
+  "username": "Username",
+  "password": "Password"
 }
 ```
-- Response:
 ```json
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9....",
-  "user": {
-    "id": 123,
-    "username": "sampleUser",
-    ...other user info...
+  "username": "Email",
+  "password": "Password"
+}
+```
+
+- **Response**: HTTP 200 (OK):
+```json
+{
+  "accessToken": "yourAccessTokenString",
+  "tokenType": "Bearer",
+  "id": 12345,
+  "avatarUrl": "http://example.com/avatar.jpg",
+  "username": "sampleUser",
+  "email": "sampleUser@example.com",
+  "displayName": "Sample User",
+  "bio": "User biography here",
+  "active": true,
+  "createdAt": "2023-01-01T12:00:00",
+  "birthDate": "1990-01-01",
+  "roles": [
+    {
+      "roleName": "ROLE_USER"
+    },
+    {
+      "roleName": "ROLE_ADMIN"
+    }
+  ]
+}
+```
+- **Response**: HTTP 404 (Not Found):
+```json
+{
+  "error": "User not found with username or email : exampleUserOrEmail"
+}
+```
+
+## User Service
+
+### Get User
+- **Endpoint**: /api/v1/users/{id}
+- **HTTP Method**: GET
+- **Path Variable**: id - User Profile ID
+- **Response**: HTTP 200 (OK)
+```json
+{
+  "id": 1,
+  "username": "user1",
+  "email": "user1@example.com"
+}
+```
+
+### Get All Users
+- **Endpoint**: /api/v1/users
+- **HTTP Method**: GET
+- **Response**: HTTP 200 (OK)
+```json
+[
+  {
+    "id": 1,
+    "username": "user1",
+    "email": "user1@example.com"
+  },
+  {
+    "id": 2,
+    "username": "user2",
+    "email": "user2@example.com"
+  },
+  {
+    "id": 3,
+    "username": "user3",
+    "email": "user3@example.com"
   }
-}
+]
 ```
 
+### Add User
+- **Endpoint**: /api/v1/users
+- **HTTP Method**: POST
+- **Request Body**:
 ```json
 {
-  "error": "Invalid username or password."
+  "id": 0, // not defined
+  "username": "user1",
+  "email": "user1@example.com"
+}
+```
+- **Response**: HTTP 201 (Created)
+```json
+{
+  "id": 1, // new generated
+  "username": "user1",
+  "email": "user1@example.com"
+}
+```
+- **Response**: HTTP 400 (Bad Request)
+
+
+
+### Update User
+- **Endpoint**: /api/v1/users/{id}
+- **HTTP Method**: PUT
+- **Path Variable**: id - User ID
+- **Request Body**:
+```json
+{
+  "id": 1,
+  "username": "updated_username",
+  "email": "updated_username@example.com"
+}
+```
+- **Response**: HTTP 200 (OK)
+```json
+{
+  "id": 1,
+  "username": "updated_username",
+  "email": "updated_username@example.com"
+}
+```
+- **Response**: HTTP 404 (Not Found)
+
+
+### Delete User
+- **Endpoint**: /api/v1/users/{id}
+- **HTTP Method**: DELETE
+- **Path Variable**: id - User Profile ID
+- **Response**: HTTP 204 (No Content)
+
+
+
+## User Profile Service
+
+### Update User Profile status (active/deactive)
+- **Endpoint**: /api/v1/user_profiles/{id}/status
+- **HTTP Method**: PATCH
+- **Path Variable**: id - User Profile ID
+- **Response**: HTTP 200 (OK)
+```json
+{
+  "active": true/false
+}
+```
+- **Response**: HTTP 404 (Not Found)
+```json
+{
+  "error": "UserProfile not found with id : 1234"
 }
 ```
 
-### Logout
-- Endpoint: /api/user/v1/logout
-- HTTP Method: POST
-- Request Header:
-```
-Authorization: Bearer <token>
-```
-- Response:
+### Update Avatar (Profile Photo)
+- **Endpoint**: /api/v1/user_profiles/{id}/avatar
+- **HTTP Method**: PATCH
+- **Path Variable**: id - User Profile ID
+- **Form Data**: file - MultipartFile (Avatar image)
+- **Response**: HTTP 200 (OK)
 ```json
-"message": "Logged out successfully."
+{
+  "avatarUrl": "http://example.com/avatar.jpg"
+}
 ```
+- **Response**: HTTP 400 (Bad Request)
 ```json
-"error": "Invalid token."
+{
+  "error": "File is empty"
+}
 ```
+- **Response**: HTTP 404 (Not Found):
+```json
+{
+  "error": "UserProfile not found with id : 1234"
+}
+```
+
+
+### Update User Profile
+- **Endpoint**: /api/v1/user_profiles/{id}
+- **HTTP Method**: PUT
+- **Path Variable**: id - User Profile ID
+- **Request Body**:
+```json
+{
+  "id": 123,
+  "avatarUrl": "http://example.com/avatar.jpg",
+  "displayName": "Sample User",
+  "bio": "User biography here",
+  "active": true,
+  "birthDate": "1990-01-01"
+}
+```
+- **Response**: HTTP 200 (OK)
+```json
+{
+  "id": 123,
+  "avatarUrl": "http://example.com/avatar.jpg",
+  "displayName": "Sample User",
+  "bio": "User biography here",
+  "active": true,
+  "birthDate": "1990-01-01"
+}
+```
+- **Response**: HTTP 404 (Not Found):
+```json
+{
+  "error": "UserProfile not found with id : 1234"
+}
+```
+
+
+## Follow Service
+
+### Get Following
+- **Endpoint**: /api/v1/follows/{id}/following
+- **HTTP Method**: GET
+- **Path Variable**: id - User ID
+- **Response**: HTTP 200 (OK)
+```json
+[
+  {
+    "followersId": 1,
+    "followingId": 2
+  },
+  {
+    "followersId": 1,
+    "followingId": 3
+  },
+  {
+    "followersId": 1,
+    "followingId": 4
+  }
+]
+```
+
+### Get Followers
+- **Endpoint**: /api/v1/follows/{id}/followers
+- **HTTP Method**: GET
+- **Path Variable**: id - User ID
+- **Response**: HTTP 200 (OK)
+```json
+[
+  {
+    "followersId": 5,
+    "followingId": 3
+  },
+  {
+    "followersId": 6,
+    "followingId": 3
+  },
+  {
+    "followersId": 7,
+    "followingId": 3
+  }
+]
+```
+
+### Add Follow
+- **Endpoint**: /api/v1/follows
+- **HTTP Method**: POST
+- **Request Body**:
+```json
+{
+  "followersId": 1,
+  "followingId": 2
+}
+```
+- **Response**: HTTP 201 (Created)
+```json
+{
+  "followersId": 1,
+  "followingId": 2
+}
+```
+- **Response**: HTTP 400 (Bad Request):
+```json
+{
+  "error": "Username already exists!"
+}
+```
+
+
+### Delete Follow
+- **Endpoint**: /api/v1/follows/{id}
+- **HTTP Method**: DELETE
+- **Path Variable**: id - Follow ID
+- **Response**: HTTP 204 (No Content)
+
+
+
 
 ### Password Reset
 #### Password Reset Request
-- Endpoint: /api/user/v1/password-reset/request
-- HTTP Method: POST
-- Request Body:
-```json
-{
-  "email": "sampleUser@example.com"
-}
-```
-- Response:
-```json
-{
-  "message": "Password reset link sent to email."
-}
-```
-```json
-{
-  "error": "Email not registered."
-}
-```
-
-#### Token Verification
-- Endpoint: /api/user/v1/password-reset/verify
-- HTTP Method: POST
-- Request Body:
-```json
-{
-  "token": "abcd1234efgh5678"
-}
-```
-- Response:
-```json
-{
-  "message": "Token verified. Proceed to reset password."
-}
-```
-```json
-{
-  "error": "Invalid or expired token."
-}
-```
-
-#### Password Reset
-- Endpoint: /api/user/v1/password-reset
-- HTTP Method: POST
-- Request Body:
-```json
-{
-  "token": "abcd1234efgh5678",
-  "newPassword": "newSamplePassword"
-}
-```
-- Response:
-```json
-{
-  "message": "Password reset successfully."
-}
-```
-```json
-{
-  "error": "Invalid token or password format."
-}
-```
-## API Authentication/Authorization
-- Bearer Token (JWT).
