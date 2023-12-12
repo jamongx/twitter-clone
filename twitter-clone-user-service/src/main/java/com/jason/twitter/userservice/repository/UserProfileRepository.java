@@ -1,14 +1,10 @@
 package com.jason.twitter.userservice.repository;
 
-
-import com.jason.twitter.userservice.entity.User;
 import com.jason.twitter.userservice.entity.UserProfile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-
-import java.util.Optional;
 
 public interface UserProfileRepository extends JpaRepository<UserProfile, Long> {
 
