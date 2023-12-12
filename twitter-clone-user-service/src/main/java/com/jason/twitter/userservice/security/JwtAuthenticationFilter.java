@@ -1,5 +1,6 @@
 package com.jason.twitter.userservice.security;
 
+import com.jason.twitter.userservice.constants.SecurityConstants;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,8 +24,6 @@ import java.io.IOException;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
-
-    private static final String BEARER_PREFIX = "Bearer ";
 
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
@@ -57,9 +56,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     }
 
     private String getTokenFromRequest(HttpServletRequest request) {
-        String bearerToken = request.getHeader("Authorization");
-        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(BEARER_PREFIX)) {
-            return bearerToken.substring(BEARER_PREFIX.length());
+        String bearerToken = request.getHeader(SecurityConstants.HTTP_AUTHORIZATION_HEADER);
+
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(SecurityConstants.BEARER_TOKEN_PREFIX)) {
+            return bearerToken.substring(SecurityConstants.BEARER_TOKEN_PREFIX.length());
         }
         return null;
     }
