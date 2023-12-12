@@ -5,7 +5,7 @@ import com.jason.twitter.userservice.dto.FollowDto;
 import com.jason.twitter.userservice.dto.FollowerDto;
 import com.jason.twitter.userservice.entity.Follow;
 import com.jason.twitter.userservice.entity.User;
-import com.jason.twitter.userservice.exception.DuplicateResourseException;
+import com.jason.twitter.userservice.exception.DuplicateResourceException;
 import com.jason.twitter.userservice.exception.ResourceNotFoundException;
 import com.jason.twitter.userservice.mapper.UserMapper;
 import com.jason.twitter.userservice.repository.FollowRepository;
@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 //import org.modelmapper.ModelMapper;
@@ -29,19 +30,18 @@ public class FollowServiceImpl implements FollowService {
 
     private UserRepository userRepository;
 
-    //private ModelMapper modelMapper;
+    private FollowerDto mapFollowToDto(Follow follow, Function<Long, Optional<User>> userFinder) {
+        return userFinder.apply(follow.getFollowingId())
+                .map(user -> UserMapper.mapToFollowerDto(follow.getId(), user))
+                .orElse(null);
+    }
 
     // 내가 following 하고 있는 사람들
     @Override
     public List<FollowerDto> getFollowers(Long userId) {
-        List<Follow> follows = followRepository.findByFollowersId(userId);
-        return follows.stream().map((follow) -> {
-                    Optional<User> user = userRepository.findById(follow.getFollowingId());
-                    if (user.isPresent()) {
-                        return UserMapper.mapToFollowerDto(follow.getId(), user.get());
-                    }
-                    return null;
-                })
+        return followRepository.findByFollowersId(userId)
+                .stream()
+                .map(follow -> mapFollowToDto(follow, userRepository::findById))
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
     }
@@ -49,22 +49,18 @@ public class FollowServiceImpl implements FollowService {
     // 나를 following 하고 있는 사람들
     @Override
     public List<FollowerDto> getFollowing(Long userId) {
-        List<Follow> follows = followRepository.findByFollowingId(userId);
-        return follows.stream().map((follow) -> {
-                    // 나를 following 하고 있는 사람들
-                    Optional<User> user = userRepository.findById(follow.getFollowersId());
-                    if (user.isPresent()) {
-                        // Follow의 아이디와 User의 전체정보
-                        return UserMapper.mapToFollowerDto(follow.getId(), user.get());
-                    }
-                    return null;
-                })
+        return followRepository.findByFollowingId(userId)
+                .stream()
+                .map(follow -> mapFollowToDto(follow, id -> userRepository.findById(follow.getFollowersId())))
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
     }
 
+
+
+
     @Override
-    public FollowDto follow(FollowDto followDto) {
+    public FollowDto createFollow(FollowDto followDto) {
         //Convert FollowDto into Follow Jpa entity
         //Not Work
         //Follow follow = modelMapper.map(followDto, Follow.class);
@@ -78,7 +74,7 @@ public class FollowServiceImpl implements FollowService {
             // Follow Jpa entity
             savedFollow = followRepository.save(follow);
         } catch (Exception e) {
-            throw new DuplicateResourseException("follow already exist. " +follow);
+            throw new DuplicateResourceException("follow already exist. " +follow);
         }
 
         // Convert saved Follow Jpa entity object into FollowDto object
@@ -90,10 +86,9 @@ public class FollowServiceImpl implements FollowService {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteFollow(Long id) {
         Follow follow = followRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Follow not found with id : " +id));
-        System.out.println("TEST="+follow);
         followRepository.deleteById(follow.getId());
     }
 
