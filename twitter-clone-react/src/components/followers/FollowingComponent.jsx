@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getFollowing } from "../../services/FollowService";
-import { getUserId } from "../../services/AuthService";
+import { getUserId } from "../../storage/SessionStorage";
 import FollowComponent from "./FollowComponent";
 import "./FollowingComponent.css";
 

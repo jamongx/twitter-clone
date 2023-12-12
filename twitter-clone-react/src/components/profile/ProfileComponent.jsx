@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 //import React, { useState, useEffect } from "react";
 import ProfileEditModal from "./ProfileEditModal";
-import { getProfileDataFromSession } from "../../services/AuthService";
+import { getProfileDataFromSessionStorage } from "../../storage/SessionStorage";
+
 import "./ProfileComponent.css";
 
 const ProfileComponent = () => {
@@ -9,7 +10,9 @@ const ProfileComponent = () => {
   const followersCount = 0;
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [profileData, setProfileData] = useState(getProfileDataFromSession());
+  const [profileData, setProfileData] = useState(
+    getProfileDataFromSessionStorage()
+  );
 
   // // For debug
   // useEffect(() => {

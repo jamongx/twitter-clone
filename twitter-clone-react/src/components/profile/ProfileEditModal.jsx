@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import DateSelectComponent from "../ui/DateSelectComponent";
 import FileUploadComponent from "../ui/FileUploadComponent";
 import Modal from "../ui/Modal";
-import { storeProfileDataToSession } from "../../services/AuthService";
-import { updateProfile } from "../../services/UserService";
+import { storeProfileDataToSessionStorage } from "../../storage/SessionStorage";
+import { updateUserProfile } from "../../services/UserProfileService";
 import ErrorMessage from "../ui/ErrorMessage";
 import "./ProfileEditModal.css";
 import { HttpStatus } from "../../utils/HttpStatus";
@@ -65,9 +65,9 @@ const ProfileEditModal = ({ isOpen, onClose, profileData, onChange }) => {
     }
 
     try {
-      const response = await updateProfile(editedProfileData);
+      const response = await updateUserProfile(editedProfileData);
       if (response.status == HttpStatus.OK) {
-        storeProfileDataToSession(editedProfileData);
+        storeProfileDataToSessionStorage(editedProfileData);
         console.log(
           "handleSubmit, storeProfileDataToSession=" +
             JSON.stringify(editedProfileData)

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { logout } from "../../services/AuthService";
+import { clearLocalStorage } from "../../storage/LocalStorage";
+import { clearSessionStorage } from "../../storage/SessionStorage";
 import "./NavigationComponent.css";
 import AuthDisplay from "../auth/AuthDisplay";
 import NotAuthDisplay from "../auth/NotAuthDisplay";
@@ -9,7 +10,8 @@ const NavigationComponent = () => {
   const navigator = useNavigate();
 
   const handleLogout = () => {
-    logout();
+    clearLocalStorage();
+    clearSessionStorage();
     navigator("/login");
   };
 

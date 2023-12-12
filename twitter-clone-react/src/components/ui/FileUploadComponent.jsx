@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { saveAvatar } from "../../services/UserService";
+import { patchUserProfileAvatar } from "../../services/UserProfileService";
 import "./FileUploadComponent.css";
 import ErrorMessage from "../ui/ErrorMessage";
 import { HttpStatus } from "../../utils/HttpStatus";
@@ -24,7 +24,7 @@ const FileUploadComponent = ({ id, value, onChange }) => {
       try {
         const formData = new FormData();
         formData.append("file", file);
-        const response = await saveAvatar(id, formData);
+        const response = await patchUserProfileAvatar(id, formData);
         if (response.status == HttpStatus.OK) {
           console.log(
             "handleUpload(response.data.avatarUrl)=" + response.data.avatarUrl

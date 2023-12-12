@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  loginAPICall,
-  storeProfileDataToSession,
-  storeToken,
-} from "../../services/AuthService";
+import { loginAPICall } from "../../services/AuthService";
+import { storeTokenToLocalStorage } from "../../storage/LocalStorage";
+import { storeProfileDataToSessionStorage } from "../../storage/SessionStorage";
 import "./SignInModal.css";
 import Modal from "../ui/Modal";
 import ErrorMessage from "../ui/ErrorMessage";
@@ -54,8 +52,8 @@ const SignInModal = ({ isOpen, onClose, onSignUpClick }) => {
       if (response.status == HttpStatus.OK) {
         const profileData = response.data;
         const token = profileData.tokenType + " " + profileData.accessToken;
-        storeToken(token);
-        storeProfileDataToSession(profileData);
+        storeTokenToLocalStorage(token);
+        storeProfileDataToSessionStorage(profileData);
         onClose();
         navigate("/home");
       }

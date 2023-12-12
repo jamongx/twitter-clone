@@ -1,13 +1,12 @@
-import React from 'react'
-import { isUserLoggedIn } from '../../services/AuthService';
+import React from "react";
+import { isUserLoggedIn } from "../../storage/SessionStorage";
 
-const NotAuthDisplay = ({children}) => {
+const NotAuthDisplay = ({ children }) => {
   const isAuth = isUserLoggedIn();
   if (!isAuth) {
     return children;
   }
-    return <></>;
+  return <></>;
+};
 
-}
-
-export default NotAuthDisplay
+export default NotAuthDisplay;
