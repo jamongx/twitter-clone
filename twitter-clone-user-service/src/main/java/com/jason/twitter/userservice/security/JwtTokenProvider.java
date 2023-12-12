@@ -5,6 +5,8 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
@@ -16,74 +18,59 @@ import java.util.Date;
 @Component
 public class JwtTokenProvider {
 
+    private static final Logger logger = LoggerFactory.getLogger(JwtTokenProvider.class);
+
     @Value("${app.jwt-secret}")
     private String jwtSecret;
 
     @Value("${app.jwt-expiration-milliseconds}")
     private long jwtExpirationDate;
 
-    // Generate JWT token
+    /**
+     * Generate JWT token.
+     */
     public String generateToken(Authentication authentication) {
         String username = authentication.getName();
+        Date now  = new Date();
+        Date expiryDate = new Date(now.getTime()+jwtExpirationDate);
 
-        Date currentDate = new Date();
-        Date expireDate = new Date(currentDate.getTime()+jwtExpirationDate);
-
-//        String token = Jwts.builder()
-//                .setSubject(username)
-//                .setIssuedAt(new Date())
-//                .setExpiration(expireDate)
-//                .signWith(secretKey())
-//                .compact();
-
-        String token = Jwts.builder()
+        return Jwts.builder()
                 .subject(username)
                 .issuedAt(new Date())
-                .expiration(expireDate)
+                .expiration(expiryDate)
                 .signWith(secretKey())
                 .compact();
-
-        return token;
     }
-
-//    private Key key() {
-//        return Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSecret));
-//    }
 
     private SecretKey secretKey() {
         return Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSecret));
     }
 
-    // Get username fro JWT token
+    /**
+     * Get username from JWT token.
+     */
     public String getUsername(String token) {
-//        Claims claims = Jwts.parserBuilder()
-//                .setSigningKey(secretKey())
-//                .build()
-//                .parseClaimsJws(token)
-//                .getBody();
-
         Claims claims = Jwts.parser()
                 .verifyWith(secretKey())
                 .build()
                 .parseSignedClaims(token)
                 .getPayload();
-
-        String username = claims.getSubject();
-        return username;
+        return claims.getSubject(); // username
     }
 
-    // Validate JWT Token
+    /**
+     * Validate JWT Token.
+     */
     public boolean validateToken(String token) {
-//        Jwts.parserBuilder()
-//                .setSigningKey(secretKey())
-//                .build()
-//                .parse(token);
-
-        Jwts.parser()
-                .verifyWith(secretKey())
-                .build()
-                .parse(token);
-
-        return true;
+        try {
+            Jwts.parser()
+                    .verifyWith(secretKey())
+                    .build()
+                    .parse(token);
+            return true;
+        } catch (Exception e) {
+            logger.error("Token validation failed: {}", e.getMessage(), e);
+        }
+        return false;
     }
 }
