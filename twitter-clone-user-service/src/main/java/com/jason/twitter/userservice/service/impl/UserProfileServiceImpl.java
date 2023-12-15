@@ -6,6 +6,7 @@ import com.jason.twitter.userservice.dto.UserProfileDto;
 import com.jason.twitter.userservice.entity.UserProfile;
 import com.jason.twitter.userservice.exception.ResourceNotFoundException;
 import com.jason.twitter.userservice.repository.UserProfileRepository;
+import com.jason.twitter.userservice.repository.UserRepository;
 import com.jason.twitter.userservice.service.UserProfileService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -26,15 +27,19 @@ public class UserProfileServiceImpl implements UserProfileService {
 
     private final String usersAvatarDir;
 
+    private UserRepository userRepository;
+
     private UserProfileRepository userProfileRepository;
 
     private ModelMapper modelMapper;
 
     @Override
+    @Transactional
     public StatusDto updateStatus(Long id, boolean isActive) {
-        int updatedRows = userProfileRepository.updateUserProfileActiveStatus(id, isActive);
+        Long profileId = userRepository.findById(id).get().getUserProfile().getId();
+        int updatedRows = userProfileRepository.updateUserProfileActiveStatus(profileId, isActive);
         if (updatedRows == 0) {
-            throw new ResourceNotFoundException("UserProfile not found with id : " + id);
+            throw new ResourceNotFoundException("UserProfile not found with profileId: " + profileId);
         }
         return new StatusDto(isActive);
     }
@@ -49,9 +54,10 @@ public class UserProfileServiceImpl implements UserProfileService {
         String fileName = storeFile(file, id);
         String avatarUrl = "/avatar/" + fileName;
 
-        int updatedRows = userProfileRepository.updateUserProfileAvatarURL(id, avatarUrl);
+        Long profileId = userRepository.findById(id).get().getUserProfile().getId();
+        int updatedRows = userProfileRepository.updateUserProfileAvatarURL(profileId, avatarUrl);
         if (updatedRows == 0) {
-            throw new ResourceNotFoundException("UserProfile not found with id : " + id);
+            throw new ResourceNotFoundException("UserProfile not found with profileId: " +profileId);
         }
         return new AvatarDto(avatarUrl);
     }
