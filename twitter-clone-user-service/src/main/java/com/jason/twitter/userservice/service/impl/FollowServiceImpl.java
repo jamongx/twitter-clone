@@ -56,9 +56,6 @@ public class FollowServiceImpl implements FollowService {
                 .collect(Collectors.toList());
     }
 
-
-
-
     @Override
     public FollowDto createFollow(FollowDto followDto) {
         //Convert FollowDto into Follow Jpa entity
