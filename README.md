@@ -13,6 +13,7 @@
 - React JS 18+, Axios, Vite JS, Bootstrap CSS, JavaScript
 - NPM, Visual Studio Code IDE
 - PostgreSQL, MongoDB
+- JUnit, Mockito, Testcontainers
 
 # Tools:
 
@@ -20,41 +21,38 @@
 - [Issue tracker](https://github.com/jamongx/twitter-clone/issues)
 - [Wiki](https://github.com/jamongx/twitter-clone/wiki)
 
-# Development Plan (Current Stage)
+# Architecture Diagram
+- twitter clone architecture diagram v1.0
+![](docs/images/twitter_clone_architecture_diagram_v1.0.jpg)
+
+
+# Development Plan
 
 ## Phase 1 (Completed)
-
-- Sep 2023.
 - [Build CI/CD Pipeline](https://github.com/jamongx/twitter-clone/wiki/build-CI-CD-pipeline)
 
 ## Phase 2 (Completed)
-
-- Oct 2023.
 - [Gateway Service](https://github.com/jamongx/twitter-clone/tree/main/twitter-clone-gateway-service)
 - [Eureka Service (Service Discovery & Service Registry)](https://github.com/jamongx/twitter-clone/tree/main/twitter-clone-eureka-service)
 - [Config Service](https://github.com/jamongx/twitter-clone/tree/main/twitter-clone-config-service)
 - [Config Repo](https://github.com/jamongx/twitter-clone/tree/main/config-repo)
 
 ## Phase 3 (In Progress)
-
-- Dec 2023.
 - [Frontend React App](https://github.com/jamongx/twitter-clone/tree/main/twitter-clone-react)
 - [User Service](https://github.com/jamongx/twitter-clone/tree/main/twitter-clone-user-service)
 
 ## Phase 4
-
 - [Logging Service](https://github.com/jamongx/twitter-clone/tree/main/twitter-clone-logging-service)
 - Tweet Service
-- Media Service
+- Timeline Service
 
 ## Phase 5
-
 - Timeline Service
 - Notification Service
 
 ## Phase 6
-
 - Search Service
 - Message Service
 - Ranking Service
 - Analytics Service
+
