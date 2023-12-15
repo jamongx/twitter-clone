@@ -9,7 +9,6 @@ import com.jason.twitter.userservice.entity.UserProfile;
 import com.jason.twitter.userservice.exception.UserAPIException;
 import com.jason.twitter.userservice.mapper.UserMapper;
 import com.jason.twitter.userservice.repository.RoleRepository;
-import com.jason.twitter.userservice.repository.UserProfileRepository;
 import com.jason.twitter.userservice.repository.UserRepository;
 import com.jason.twitter.userservice.security.JwtTokenProvider;
 import com.jason.twitter.userservice.constants.SecurityConstants;
@@ -35,7 +34,6 @@ public class AuthServiceImpl implements AuthService {
 
     private final String defaultAvatarUrl;
     private UserRepository userRepository;
-    private UserProfileRepository userProfileRepository;
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
     private AuthenticationManager authenticationManager;
@@ -54,8 +52,6 @@ public class AuthServiceImpl implements AuthService {
         userProfile.setUser(user);
 
         User createdUser = userRepository.save(user);
-        System.out.println(createdUser);
-
         return "User Registered Successfully!.";
     }
 
