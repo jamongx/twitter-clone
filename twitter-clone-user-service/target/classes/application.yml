@@ -5,7 +5,8 @@ spring:
   application:
     name: user-service
   profiles:
-    active: dev
+    active: postgres
+    # active: dev/postgres/h2
   config:
     import: optional:configserver:http://localhost:9050
   cloud:
