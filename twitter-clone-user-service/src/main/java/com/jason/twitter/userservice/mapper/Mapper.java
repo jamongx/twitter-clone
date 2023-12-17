@@ -1,12 +1,37 @@
 package com.jason.twitter.userservice.mapper;
 
-import com.jason.twitter.userservice.dto.FollowerDto;
-import com.jason.twitter.userservice.dto.JwtAuthResponse;
-import com.jason.twitter.userservice.dto.UserDto;
+import com.jason.twitter.userservice.dto.*;
+import com.jason.twitter.userservice.entity.Follow;
 import com.jason.twitter.userservice.entity.User;
 import com.jason.twitter.userservice.entity.UserProfile;
 
-public class UserMapper {
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+public class Mapper {
+
+    public static UserProfileDto mapToUserProfileDto(UserProfile userProfile) {
+        return new UserProfileDto(
+                //userProfile.getUser().getId(),
+                userProfile.getId(),
+                userProfile.getAvatarUrl(),
+                userProfile.getDisplayName(),
+                userProfile.getBio(),
+                userProfile.isActive(),
+                userProfile.getBirthDate());
+    }
+
+
+    public static FollowerDto mapFollowerDto(Follow follow, Function<Long, Optional<User>> userFinder) {
+        return userFinder.apply(follow.getFollowingId())
+                .map(user -> mapToFollowerDto(follow.getId(), user))
+                .orElse(null);
+    }
+
+
+
     public static FollowerDto mapToFollowerDto(Long followerId, User user) {
         return new FollowerDto(
                 followerId,
@@ -50,6 +75,21 @@ public class UserMapper {
                 user.getUserProfile().isActive(),
                 user.getUserProfile().getBirthDate());
     }
+
+    public static List<UserDto> mapToUserDtos(List<User> users) {
+        return users.stream()
+                .map(user -> new UserDto(
+                        user.getId(),
+                        user.getUsername(),
+                        user.getUserProfile().getDisplayName(),
+                        user.getEmail(),
+                        user.getUserProfile().getBio(),
+                        user.getUserProfile().getAvatarUrl(),
+                        user.getUserProfile().isActive(),
+                        user.getUserProfile().getBirthDate()))
+                .collect(Collectors.toList());
+    }
+
 
     public static JwtAuthResponse mapToJwtAuthResponse(User user, String token, String tokenType) {
         return new JwtAuthResponse(

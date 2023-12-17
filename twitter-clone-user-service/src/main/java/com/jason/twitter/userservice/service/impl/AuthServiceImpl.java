@@ -1,5 +1,6 @@
 package com.jason.twitter.userservice.service.impl;
 
+import com.jason.twitter.userservice.constants.Constants;
 import com.jason.twitter.userservice.dto.JwtAuthResponse;
 import com.jason.twitter.userservice.dto.LoginDto;
 import com.jason.twitter.userservice.dto.RegisterDto;
@@ -7,7 +8,7 @@ import com.jason.twitter.userservice.entity.Role;
 import com.jason.twitter.userservice.entity.User;
 import com.jason.twitter.userservice.entity.UserProfile;
 import com.jason.twitter.userservice.exception.UserAPIException;
-import com.jason.twitter.userservice.mapper.UserMapper;
+import com.jason.twitter.userservice.mapper.Mapper;
 import com.jason.twitter.userservice.repository.RoleRepository;
 import com.jason.twitter.userservice.repository.UserRepository;
 import com.jason.twitter.userservice.security.JwtTokenProvider;
@@ -52,7 +53,7 @@ public class AuthServiceImpl implements AuthService {
         userProfile.setUser(user);
 
         User createdUser = userRepository.save(user);
-        return "User Registered Successfully!.";
+        return Constants.MSG_REGISTER_SUCC;
     }
 
     @Transactional
@@ -67,7 +68,7 @@ public class AuthServiceImpl implements AuthService {
         String token = tokenProvider.generateToken(authentication);
 
         User user = getUserByUsernameOrEmail(loginDto.getUsernameOrEmail());
-        return UserMapper.mapToJwtAuthResponse(user, token, SecurityConstants.BEARER_TOKEN_TYPE);
+        return Mapper.mapToJwtAuthResponse(user, token, SecurityConstants.BEARER_TOKEN_TYPE);
     }
 
     private void validateUserExistence(String username, String email) {

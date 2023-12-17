@@ -4,7 +4,7 @@ package com.jason.twitter.userservice.service.impl;
 import com.jason.twitter.userservice.constants.SecurityConstants;
 import com.jason.twitter.userservice.entity.Role;
 import com.jason.twitter.userservice.exception.UserAPIException;
-import com.jason.twitter.userservice.mapper.UserMapper;
+import com.jason.twitter.userservice.mapper.Mapper;
 import com.jason.twitter.userservice.repository.RoleRepository;
 import lombok.AllArgsConstructor;
 import com.jason.twitter.userservice.dto.UserDto;
@@ -12,7 +12,6 @@ import com.jason.twitter.userservice.entity.User;
 import com.jason.twitter.userservice.exception.ResourceNotFoundException;
 import com.jason.twitter.userservice.repository.UserRepository;
 import com.jason.twitter.userservice.service.UserService;
-import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -34,7 +33,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto addUser(UserDto userDto) {
-        User user = UserMapper.mapToUser(userDto);
+        User user = Mapper.mapToUser(userDto);
         if (userRepository.existsByUsername(user.getUsername())) {
             throw new UserAPIException(HttpStatus.BAD_REQUEST, "Username already exists.");
         }
@@ -57,7 +56,7 @@ public class UserServiceImpl implements UserService {
         } catch (Exception e) {
             throw new UserAPIException(HttpStatus.INTERNAL_SERVER_ERROR, "Error saving user");
         }
-        return UserMapper.mapToUserDto(savedUser);
+        return Mapper.mapToUserDto(savedUser);
 
     }
 
@@ -66,13 +65,13 @@ public class UserServiceImpl implements UserService {
     public UserDto getUser(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id:" + id));
-        return UserMapper.mapToUserDto(user);
+        return Mapper.mapToUserDto(user);
     }
 
     @Override
     public List<UserDto> findAll() {
         List<User> users = userRepository.findAll();
-        return users.stream().map((user) -> UserMapper.mapToUserDto(user))
+        return users.stream().map((user) -> Mapper.mapToUserDto(user))
                 .collect(Collectors.toList());
     }
 
@@ -93,9 +92,15 @@ public class UserServiceImpl implements UserService {
         }
         user.setEmail(userDto.getEmail());
 
+        user.getUserProfile().setDisplayName(userDto.getDisplayName());
+        user.getUserProfile().setBio(userDto.getBio());
+        user.getUserProfile().setAvatarUrl(userDto.getAvatarUrl());
+        user.getUserProfile().setActive(userDto.getActive());
+        user.getUserProfile().setBirthDate(userDto.getBirthDate());
+
         User updatedUser = userRepository.save(user);
 
-        return UserMapper.mapToUserDto(updatedUser);
+        return Mapper.mapToUserDto(updatedUser);
     }
 
     @Override

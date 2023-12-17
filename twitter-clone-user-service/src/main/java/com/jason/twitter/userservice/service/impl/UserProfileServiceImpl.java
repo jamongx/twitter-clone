@@ -5,12 +5,12 @@ import com.jason.twitter.userservice.dto.StatusDto;
 import com.jason.twitter.userservice.dto.UserProfileDto;
 import com.jason.twitter.userservice.entity.UserProfile;
 import com.jason.twitter.userservice.exception.ResourceNotFoundException;
+import com.jason.twitter.userservice.mapper.Mapper;
 import com.jason.twitter.userservice.repository.UserProfileRepository;
 import com.jason.twitter.userservice.repository.UserRepository;
 import com.jason.twitter.userservice.service.UserProfileService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -30,8 +30,6 @@ public class UserProfileServiceImpl implements UserProfileService {
     private UserRepository userRepository;
 
     private UserProfileRepository userProfileRepository;
-
-    private ModelMapper modelMapper;
 
     @Override
     @Transactional
@@ -104,13 +102,16 @@ public class UserProfileServiceImpl implements UserProfileService {
     @Override
     @Transactional
     public UserProfileDto updateProfile(UserProfileDto userProfileDto) {
-        UserProfile userProfile = userProfileRepository.findById(userProfileDto.getId())
-                .orElseThrow(() -> new ResourceNotFoundException("UserProfile not found with id : " + userProfileDto.getId()));
+        Long userId = userProfileDto.getId();
+        Long profileId = userRepository.findById(userId).get().getUserProfile().getId();
+        UserProfile userProfile = userProfileRepository.findById(profileId)
+                .orElseThrow(() -> new ResourceNotFoundException("UserProfile not found with profile id : " + profileId));
 
         updateEntityFromDto(userProfile, userProfileDto);
 
         UserProfile updatedUserProfile = userProfileRepository.save(userProfile);
-        return modelMapper.map(updatedUserProfile, UserProfileDto.class);
+        return Mapper.mapToUserProfileDto(updatedUserProfile);
+
     }
 
 
