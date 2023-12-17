@@ -1,7 +1,6 @@
-package com.jason.twitter.userservice.security;
+package com.jason.twitter.userservice.service.impl;
 
 import com.jason.twitter.userservice.entity.User;
-import com.jason.twitter.userservice.repository.UserProfileRepository;
 import com.jason.twitter.userservice.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,7 +15,7 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-public class CustomUserDetailService implements UserDetailsService {
+public class UserDetailServiceImpl implements UserDetailsService {
 
     private UserRepository userRepository;
 
