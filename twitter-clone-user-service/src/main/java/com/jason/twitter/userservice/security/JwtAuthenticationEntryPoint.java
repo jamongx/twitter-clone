@@ -10,6 +10,12 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
+/**
+ * This class implements the AuthenticationEntryPoint interface from Spring Security.
+ * Its primary purpose is to provide an appropriate response when a user attempts to access
+ * protected resources without being authenticated. It intercepts such unauthorized access
+ * attempts and returns a suitable HTTP response, typically indicating that authentication is required.
+ */
 @Component
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
 

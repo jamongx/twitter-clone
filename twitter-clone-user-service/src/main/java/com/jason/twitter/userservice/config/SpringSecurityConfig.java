@@ -12,23 +12,20 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
 
 @Configuration
 @EnableMethodSecurity
 @AllArgsConstructor
 public class SpringSecurityConfig {
 
-    private UserDetailsService userDetailsService;
-
+    // Handle unauthenticated access
     private JwtAuthenticationEntryPoint authenticationEntryPoint;
 
+    // Validate JWT tokens in requests
     private JwtAuthenticationFilter authenticationFilter;
 
     @Bean
@@ -36,6 +33,7 @@ public class SpringSecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+    // Set up security filter chain for HTTP requests
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
@@ -43,14 +41,20 @@ public class SpringSecurityConfig {
                 .authorizeHttpRequests(authorize -> {
                     authorize.requestMatchers("/api/v1/auth/**").permitAll();
                     authorize.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
-                    authorize.anyRequest().authenticated();
-                }).httpBasic(Customizer.withDefaults());
+                    authorize.anyRequest().authenticated(); // Require authentication for other requests
+                }).httpBasic(Customizer.withDefaults()); // Use basic HTTP authentication
 
+        // Use JwtAuthenticationEntryPoint to handle authentication failures
         httpSecurity.exceptionHandling(exception -> exception
                 .authenticationEntryPoint(authenticationEntryPoint));
 
+        // UsernamePasswordAuthenticationFilter is one of the default authentication filters in Spring Security,
+        // handling authentication based on username and password
+        // By using addFilterBefore, the authenticationFilter is executed before this default filter
         httpSecurity.addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
+        // Finish the Spring Security configuration,
+        // and create a SecurityFilterChain object based on the configured security settings
         return httpSecurity.build();
     }
 
@@ -60,4 +64,3 @@ public class SpringSecurityConfig {
     }
 
 }
-
