@@ -1,12 +1,12 @@
 package com.jason.twitter.userservice.utils;
 
 import com.jason.twitter.userservice.constants.SecurityConstants;
-import com.jason.twitter.userservice.dto.LoginDto;
-import com.jason.twitter.userservice.dto.RegisterDto;
-import com.jason.twitter.userservice.dto.UserDto;
+import com.jason.twitter.userservice.dto.*;
+import com.jason.twitter.userservice.entity.Follow;
 import com.jason.twitter.userservice.entity.Role;
 import com.jason.twitter.userservice.entity.User;
 import com.jason.twitter.userservice.entity.UserProfile;
+import com.jason.twitter.userservice.mapper.Mapper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class TestData {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -52,14 +53,68 @@ public class TestData {
     }
 
 
-    public static RegisterDto createRegisterDto() {
+    public static List<Follow> createFollowers (Long userId, List<User> users) {
+        return users.stream()
+                .filter(user -> !user.getId().equals(userId))
+                .map(user -> new Follow(
+                        0L,
+                        userId,
+                        user.getId(),
+                        LocalDateTime.now()
+                ))
+                .collect(Collectors.toList());
+    }
+
+    public static List<Follow> createFollowing (Long userId, List<User> users) {
+        return users.stream()
+                .filter(user -> !user.getId().equals(userId))
+                .map(user -> new Follow(
+                        null,
+                        user.getId(),
+                        userId,
+                        null
+                ))
+                .collect(Collectors.toList());
+    }
+
+    public static FollowDto createFollowDto (Follow follow) {
+        return new FollowDto(
+                follow.getFollowersId(),
+                follow.getFollowingId()
+        );
+    }
+
+    public static Follow createFollow (User followers, User following) {
+        return new Follow(
+                null,
+                followers.getId(),
+                following.getId(),
+                null
+        );
+    }
+
+    public static List<FollowerDto> createFollowerDtos(Long userId, List<User> users) {
+        return users.stream()
+            .filter(user -> !user.getId().equals(userId)) // userId와 user.getId()가 같지 않은 경우에만 포함
+            .map(user -> new FollowerDto(
+                    userId,
+                    user.getId(),
+                    user.getUserProfile().getAvatarUrl(),
+                    user.getUsername(),
+                    user.getUserProfile().getDisplayName(),
+                    user.getUserProfile().getBio()))
+            .collect(Collectors.toList());
+    }
+
+
+    public static RegisterDto createRegisterDto(User user) {
         return new RegisterDto(
-                getTestUsername(0),
-                getTestPassword(),
-                getTestDisplayName(0),
-                getTestEmail(0),
-                getTestBio(0),
-                getTestBirthDate().format(FORMATTER));
+                user.getUsername(),
+                user.getPassword(),
+                user.getUserProfile().getDisplayName(),
+                user.getEmail(),
+                user.getUserProfile().getBio(),
+                user.getUserProfile().getBirthDate().format(FORMATTER));
     }
 
     public static LoginDto createLoginDto(String testUsername, String testPassword) {
