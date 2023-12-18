@@ -1,11 +1,9 @@
 package com.jason.twitter.userservice.service;
 
-import com.jason.twitter.userservice.constants.SecurityConstants;
 import com.jason.twitter.userservice.dto.UserDto;
-import com.jason.twitter.userservice.entity.Role;
 import com.jason.twitter.userservice.entity.User;
 import com.jason.twitter.userservice.exception.UserAPIException;
-import com.jason.twitter.userservice.mapper.UserMapper;
+import com.jason.twitter.userservice.mapper.Mapper;
 import com.jason.twitter.userservice.repository.RoleRepository;
 import com.jason.twitter.userservice.repository.UserRepository;
 import com.jason.twitter.userservice.service.impl.UserServiceImpl;
@@ -54,7 +52,7 @@ public class UserServiceTests {
     public void setup() {
         users = TestData.createTestUsers(3);
         user = users.get(0);
-        userDto = UserMapper.mapToUserDto(user);
+        userDto = Mapper.mapToUserDto(user);
     }
 
     @DisplayName("JUnit test for addUser method")

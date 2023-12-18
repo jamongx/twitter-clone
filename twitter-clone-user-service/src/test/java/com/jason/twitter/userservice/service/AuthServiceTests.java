@@ -54,12 +54,10 @@ public class AuthServiceTests {
     @InjectMocks
     private AuthServiceImpl authService;
 
-    private RegisterDto registerDto;
     private List<User> users;
 
     @BeforeEach
     public void setup() {
-        registerDto = TestData.createRegisterDto();
         users = TestData.createTestUsers(1);
     }
 
@@ -67,19 +65,21 @@ public class AuthServiceTests {
     @DisplayName("JUnit test for register method")
     @Test
     public void givenRegisterDto_whenRegister_thenReturnSuccessMessage() {
+        RegisterDto registerDto = TestData.createRegisterDto(users.get(0));
+
         given(userRepository.existsByUsername(registerDto.getUsername())).willReturn(false);
         given(userRepository.existsByEmail(registerDto.getEmail())).willReturn(false);
         given(userRepository.save(any(User.class))).willReturn(users.get(0));
 
-        String result = authService.register(registerDto);
-
-        assertThat(result).isEqualTo("User Registered Successfully!.");
+        String response = authService.register(registerDto);
+        assertThat(response).isEqualTo("User Registered Successfully!");
     }
 
     // Test for register method when user already exists
     @DisplayName("JUnit test for register method when user already exists")
     @Test
     public void givenExistingUser_whenRegister_thenThrowUserAPIException() {
+        RegisterDto registerDto = TestData.createRegisterDto(users.get(0));
         given(userRepository.existsByUsername(registerDto.getUsername())).willReturn(true);
         try {
             authService.register(registerDto);
