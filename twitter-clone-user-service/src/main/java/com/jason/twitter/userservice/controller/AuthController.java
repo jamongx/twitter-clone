@@ -23,9 +23,10 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody RegisterDto registerDto) {
         logger.info("Registering user: {}", registerDto);
-        System.out.println("registerDto=" +registerDto);
         String response = authService.register(registerDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(response);
     }
 
     @PostMapping("/login")
