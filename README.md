@@ -42,12 +42,11 @@
 - [User Service](https://github.com/jamongx/twitter-clone/tree/main/twitter-clone-user-service)
 
 ## Phase 4
-- [Logging Service](https://github.com/jamongx/twitter-clone/tree/main/twitter-clone-logging-service)
 - Tweet Service
 - Timeline Service
 
 ## Phase 5
-- Timeline Service
+- [Logging Service](https://github.com/jamongx/twitter-clone/tree/main/twitter-clone-logging-service)
 - Notification Service
 
 ## Phase 6
