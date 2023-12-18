@@ -13,7 +13,7 @@ import java.util.Set;
 @AllArgsConstructor
 @ToString
 public class UserProfileDto {
-    private Long id;
+    private Long id; // user id (not user profile id)
     private String avatarUrl;
     private String displayName;
     private String bio;
