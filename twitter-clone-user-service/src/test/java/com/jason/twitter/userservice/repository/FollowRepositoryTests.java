@@ -2,6 +2,7 @@ package com.jason.twitter.userservice.repository;
 
 import com.jason.twitter.userservice.entity.Follow;
 import com.jason.twitter.userservice.entity.User;
+import com.jason.twitter.userservice.utils.TestData;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 
-import static com.jason.twitter.userservice.utils.TestData.createTestUsers;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
@@ -29,14 +29,10 @@ public class FollowRepositoryTests {
 
     @BeforeEach
     public void setup() {
+        users = TestData.createTestUsers(2);
+        userRepository.saveAll(users);
 
-        users = createTestUsers(2);
-        userRepository.save(users.get(0));
-        userRepository.save(users.get(1));
-
-        follow = new Follow();
-        follow.setFollowersId(users.get(0).getId());
-        follow.setFollowingId(users.get(1).getId());
+        follow = TestData.createFollow(users.get(0), users.get(1));
         followRepository.save(follow);
     }
 

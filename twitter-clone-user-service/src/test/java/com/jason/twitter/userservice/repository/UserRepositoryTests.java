@@ -1,16 +1,22 @@
 package com.jason.twitter.userservice.repository;
 
+import com.jason.twitter.userservice.dto.RegisterDto;
 import com.jason.twitter.userservice.entity.User;
 
+import static com.jason.twitter.userservice.utils.TestData.createRegisterDto;
 import static com.jason.twitter.userservice.utils.TestData.createTestUsers;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.jason.twitter.userservice.service.AuthService;
+import com.jason.twitter.userservice.service.UserService;
+import com.jason.twitter.userservice.utils.TestData;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
